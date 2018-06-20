@@ -15,6 +15,7 @@ var enableSpacePlane = true;
 var enableStarModel = true;
 var enableTour = true;
 var enableDirector = true;
+var enablePlanet = true;
 
 var firstTime = localStorage ? (localStorage.getItem('first') == null) : true;
 
@@ -51,6 +52,10 @@ var pGalacticSystem;
 var pDustSystem;
 var earth;
 var spacePlane;
+
+// special added
+var planet;
+
 
 var screenWhalf, screenHhalf;
 var divCSSWorld, divCSSCamera;
@@ -228,6 +233,7 @@ function initScene() {
 	masterContainer.addEventListener( 'touchstart', touchStart, false );
 	window.addEventListener( 'touchend', touchEnd, false );
 	window.addEventListener( 'touchmove', touchMove, false );
+	window.addEventListener( 'wheel', onMouseWheel, false);
 
 
 	//	-----------------------------------------------------------------------------
@@ -236,7 +242,7 @@ function initScene() {
 	camera.position.z = 2000; //changes
 	camera.rotation.vx = 0;
 	camera.rotation.vy = 0;
-	camera.position.target = { x: 0, z: 2, pz: 2000 };
+	camera.position.target = { x: 1, z: 70000, pz: 2000 };
 
 	if( enableSkybox ){
 		setupSkyboxScene();
@@ -274,6 +280,7 @@ function initScene() {
 	camera.position.y = 0;
 	camera.scale.z = 0.83;
 
+	// camera.lookAt.x = 2.1
 	scene.add( camera );
 
 
@@ -380,9 +387,9 @@ function sceneSetup(){
     // console.time("make star models");
 		starModel = makeStarModels();		
 		starModel.setSpectralIndex(0.9);
-		starModel.setScale(1.0);		
+		starModel.setScale(10.0);		
 		translating.add(starModel);
-		// console.timeEnd("make star models");
+		console.log(starModel.position);
 	}
 	
 
@@ -414,6 +421,53 @@ function sceneSetup(){
 		initSkybox(false);
 	}	
 
+	if(enablePlanet){
+		
+
+				var uniforms = {  
+		  texture: { type: 't', value: THREE.ImageUtils.loadTexture('images/planet02.jpg') }
+		};
+
+		var materialSun = new THREE.ShaderMaterial( {  
+		  uniforms:       uniforms,
+		  vertexShader:   document.getElementById('sky-vertex').textContent,
+		  fragmentShader: document.getElementById('sky-fragment').textContent,
+		  side : THREE.DoubleSide
+		});
+		var pinkMat = new THREE.MeshPhongMaterial({
+		        color: 0xF66120,
+		        emissive: 0xF66120,
+		        specular: 0xFFED22,
+		        shininess: 10,
+		        shading: THREE.FlatShading,
+		        transparent: 1,
+		        opacity: 1,
+		        map : new THREE.TextureLoader().load( "images/planet02.jpg" )
+		    });
+
+		var   sph = new THREE.Mesh(new THREE.SphereGeometry(0.0000001, 100, 100), pinkMat);
+	    // translating.add(sph);
+
+		var geometry = new THREE.SphereGeometry( 0.01, 32, 32 );
+		var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
+		var sphere2 = new THREE.Mesh( geometry, material );
+		// scene.add(sphere2)
+		planet = makePlanet({
+			radius: 7.35144e-7,
+			spectral: 0.656,
+		});
+		planet.position.x = 0.00005;
+		sphere2.position.x = 0.1
+		// sphere2.position.y = 0.1
+		// sphere2.position.z = 0.1
+		// starModel.visible = false
+		console.log(planet.position)
+		translating.add(planet)
+				// centerOn( new THREE.Vector3(0.1,0.1,0.1) );
+		// zoomIn(1.4)
+
+	 }
+
 }
 
 
@@ -421,7 +475,9 @@ function animate() {
 
 	// Make sure the document doesn't scroll
 	document.body.scrollTop = document.body.scrollLeft = 0;
-
+	// centerOn(new THREE.Vector3( 0.00002092,0,0))
+	camera.position.x = 0
+	// camera.lookAt.x = 0.000001
 	camera.update();
 	camera.markersVisible = camera.position.z < markerThreshold.max && camera.position.z > markerThreshold.min;
 
@@ -456,9 +512,14 @@ function animate() {
 			if( starModel ){
 				starModel.rotation.x = rotateX;
 				starModel.rotation.y = rotateY;	
-			}					
-			rotating.rotation.x = 0;
-			rotating.rotation.y = 0;
+			}
+			if(planet){
+				planet.rotation.x = rotateX;
+				planet.rotation.y = rotateY;				
+			}			
+			// changes by sunil to correct planetory rotation		
+			rotating.rotation.x = rotateX //0;
+			rotating.rotation.y =  rotateY//0;
 		}
 		else{
 			rotating.rotation.x = rotateX;
@@ -467,7 +528,10 @@ function animate() {
 				starModel.rotation.x = rotateX;
 				starModel.rotation.y = rotateY;
 			}
-			
+			if(planet){
+				planet.rotation.x = rotateX;
+				planet.rotation.y = rotateY;				
+			}
 		}
 		
 		
@@ -535,7 +599,6 @@ function animate() {
 
 		TWEEN.update();
 	}
-
 }
 
 function render() {

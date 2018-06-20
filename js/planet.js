@@ -1,52 +1,52 @@
-var sunTexture;
-var sunColorLookupTexture;
-var solarflareTexture;
-var sunHaloTexture;
-var sunHaloColorTexture;
-var sunCoronaTexture;
+var sunTexture1;
+var sunColorLookupTexture1;
+var solarflareTexture1;
+var sunHaloTexture1;
+var sunHaloColorTexture1;
+var sunCoronaTexture1;
 
-function loadStarSurfaceTextures(){
-	if( sunTexture === undefined ){
-		sunTexture = THREE.ImageUtils.loadTexture( "images/sun_surface.png", undefined, setLoadMessage("Igniting solar plasma") );
-		sunTexture.anisotropy = maxAniso;
-		sunTexture.wrapS = sunTexture.wrapT = THREE.RepeatWrapping;
+function loadStarSurfaceTextures1(){
+	if( sunTexture1 === undefined ){
+		sunTexture1 = THREE.ImageUtils.loadTexture( "images/sun_surface.png", undefined, setLoadMessage("Igniting solar plasma") );
+		sunTexture1.anisotropy = maxAniso;
+		sunTexture1.wrapS = sunTexture1.wrapT = THREE.RepeatWrapping;
 	}
 
-	if( sunColorLookupTexture === undefined ){
-		sunColorLookupTexture = THREE.ImageUtils.loadTexture( "images/star_colorshift.png" );
+	if( sunColorLookupTexture1 === undefined ){
+		// sunColorLookupTexture1 = THREE.ImageUtils.loadTexture( "images/star_colorshift.png" );
 	}
 
-	if( solarflareTexture === undefined ){
-		solarflareTexture = THREE.ImageUtils.loadTexture( "images/solarflare.png", undefined, setLoadMessage("Distributing solar flares")	 );
+	if( solarflareTexture1 === undefined ){
+		// solarflareTexture1 = THREE.ImageUtils.loadTexture( "images/solarflare.png", undefined, setLoadMessage("Distributing solar flares")	 );
 	}
 
-	if( sunHaloTexture === undefined ){
-		sunHaloTexture = THREE.ImageUtils.loadTexture( "images/sun_halo.png", undefined, setLoadMessage("Calculating coronal mass") );
+	if( sunHaloTexture1 === undefined ){
+		// sunHaloTexture1 = THREE.ImageUtils.loadTexture( "images/sun_halo.png", undefined, setLoadMessage("Calculating coronal mass") );
 	}
 
-	if( sunHaloColorTexture === undefined ){
-		sunHaloColorTexture = THREE.ImageUtils.loadTexture( "images/halo_colorshift.png" );
+	if( sunHaloColorTexture1 === undefined ){
+		// sunHaloColorTexture1 = THREE.ImageUtils.loadTexture( "images/halo_colorshift.png" );
 	}
 
-	if( sunCoronaTexture === undefined ){
-		sunCoronaTexture = THREE.ImageUtils.loadTexture( "images/corona.png", undefined, setLoadMessage("Projecting coronal ejecta") );
+	if( sunCoronaTexture1 === undefined ){
+		// sunCoronaTexture = THREE.ImageUtils.loadTexture( "images/corona.png", undefined, setLoadMessage("Projecting coronal ejecta") );
 	}
 }
 
-var surfaceGeo;// = new THREE.SphereGeometry( 7.35144e-8, 60, 30);
-function makeStarSurface( radius, uniforms ){
+var surfaceGeo1// = new THREE.SphereGeometry( 7.35144e-8, 60, 30);
+function makeStarSurface1( radius, uniforms ){
 	var sunShaderMaterial = new THREE.ShaderMaterial( {
 		uniforms: 		uniforms,
 		vertexShader:   shaderList.starsurface.vertex,
 		fragmentShader: shaderList.starsurface.fragment,
 	});
 
-	var sunSphere = new THREE.Mesh( surfaceGeo, sunShaderMaterial);
+	var sunSphere = new THREE.Mesh( surfaceGeo1, sunShaderMaterial);
 	return sunSphere;
 }
 
-var haloGeo;// = new THREE.PlaneGeometry( .00000022, .00000022 );
-function makeStarHalo(uniforms){
+var haloGeo1 = new THREE.PlaneGeometry( .00000022, .00000022 );
+function makeStarHalo1(uniforms){
 	var sunHaloMaterial = new THREE.ShaderMaterial(
 		{
 			uniforms: 		uniforms,
@@ -64,13 +64,13 @@ function makeStarHalo(uniforms){
 		}
 	);
 
-	var sunHalo = new THREE.Mesh( haloGeo, sunHaloMaterial );
+	var sunHalo = new THREE.Mesh( haloGeo1, sunHaloMaterial );
 	sunHalo.position.set( 0, 0, 0 );
 	return sunHalo;
 }
 
-var glowGeo ;//= new THREE.PlaneGeometry( .0000012, .0000012 );
-function makeStarGlow(uniforms){
+var glowGeo1 = new THREE.PlaneGeometry( .0000012, .0000012 );
+function makeStarGlow1(uniforms){
 	//	the bright glow surrounding everything
 	var sunGlowMaterial = new THREE.ShaderMaterial(
 		{
@@ -90,12 +90,12 @@ function makeStarGlow(uniforms){
 		}
 	);
 
-	var sunGlow = new THREE.Mesh( glowGeo, sunGlowMaterial );
+	var sunGlow = new THREE.Mesh( glowGeo1, sunGlowMaterial );
 	sunGlow.position.set( 0, 0, 0 );
 	return sunGlow;
 }
 
-function makeStarLensflare(size, zextra, hueShift){
+function makeStarLensflare1(size, zextra, hueShift){
 	var sunLensFlare = addStarLensFlare( 0,0,zextra, size, undefined, hueShift);
 	sunLensFlare.customUpdateCallback = function(object){
 		if( object.visible == false )
@@ -144,8 +144,8 @@ function makeStarLensflare(size, zextra, hueShift){
 	return sunLensFlare;
 }
 
-var solarflareGeometry ;//= new THREE.TorusGeometry( 0.00000003, 0.000000001 + 0.000000002, 60, 90, 0.15 + Math.PI  );
-function makeSolarflare( uniforms, fac ){
+var solarflareGeometry1 = new THREE.TorusGeometry( 0.00000003, 0.000000001 + 0.000000002, 60, 90, 0.15 + Math.PI  );
+function makeSolarflare1( uniforms ){
 	var solarflareMaterial = new THREE.ShaderMaterial(
 		{
 			uniforms: 		uniforms,
@@ -177,7 +177,7 @@ function makeSolarflare( uniforms, fac ){
 		solarflareContainer.position.x = -1 + Math.random() * 2;
 		solarflareContainer.position.y = -1 + Math.random() * 2;
 		solarflareContainer.position.z = -1 + Math.random() * 2;
-		solarflareContainer.position.multiplyScalar(fac* 7.35144e-8 * 0.8 );
+		solarflareContainer.position.multiplyScalar( 7.35144e-8 * 0.8 );
 		solarflareContainer.lookAt( new THREE.Vector3(0,0,0) );
 		solarflareContainer.add( solarflare );
 
@@ -187,44 +187,39 @@ function makeSolarflare( uniforms, fac ){
 	return solarflareMesh;
 }
 
-function makeSun( options ){
+function makePlanet( options ){
 	var radius = options.radius;
 	var spectral = options.spectral;
-	var fac = radius/7.35144e-8;
-
-	surfaceGeo = new THREE.SphereGeometry( radius, 60, 30);
-	haloGeo = new THREE.PlaneGeometry( fac*0.00000022,fac* 0.00000022 );
-	glowGeo = new THREE.PlaneGeometry( fac* 0.0000012,fac * 0.0000012 );
-	solarflareGeometry = new THREE.TorusGeometry( fac*0.00000003,fac* 0.000000001 + fac*0.000000002, 60, 90, 0.15 + Math.PI  );
+	surfaceGeo1 = new THREE.SphereGeometry( radius, 60, 30);
   // console.time("load sun textures"); 
-	loadStarSurfaceTextures();
+	loadStarSurfaceTextures1();
   // console.timeEnd("load sun textures");
 
 	var sunUniforms = {
-		texturePrimary:   { type: "t", value: sunTexture },
-		textureColor:   { type: "t", value: sunColorLookupTexture },
+		texturePrimary:   { type: "t", value: sunTexture1 },
+		textureColor:   { type: "t", value: sunColorLookupTexture1 },
 		textureSpectral: { type: "t", value: starColorGraph },
 		time: 			{ type: "f", value: 0 },
 		spectralLookup: { type: "f", value: 0 },		
 	};
 
 	var solarflareUniforms = {
-		texturePrimary:   { type: "t", value: solarflareTexture },
+		texturePrimary:   { type: "t", value: solarflareTexture1 },
 		time: 			{ type: "f", value: 0 },
 		textureSpectral: { type: "t", value: starColorGraph },
 		spectralLookup: { type: "f", value: 0 },	
 	};
 
 	var haloUniforms = {
-		texturePrimary:   { type: "t", value: sunHaloTexture },
-		textureColor:   { type: "t", value: sunHaloColorTexture },
+		texturePrimary:   { type: "t", value: sunHaloTexture1 },
+		textureColor:   { type: "t", value: sunHaloColorTexture1 },
 		time: 			{ type: "f", value: 0 },
-		textureSpectral: { type: "t", value: starColorGraph },
+		textureSpectral: { type: "t", value: starColorGraph},
 		spectralLookup: { type: "f", value: 0 },			
 	};
 
 	var coronaUniforms = {
-		texturePrimary:   { type: "t", value: sunCoronaTexture },
+		texturePrimary:   { type: "t", value: sunCoronaTexture1 },
 		textureSpectral: { type: "t", value: starColorGraph },
 		spectralLookup: { type: "f", value: 0 },			
 	};	
@@ -234,37 +229,39 @@ function makeSun( options ){
 
 	//	the actual glowy ball of fire
   // console.time("make sun surface");
-	var starSurface = makeStarSurface( radius, sunUniforms );
+	var starSurface = makeStarSurface1( radius, sunUniforms );
 	sun.add( starSurface );
   // console.timeEnd("make sun surface");
 
+
+//cahnges by sunil
   // console.time("make sun solarflare");
-	var solarflare = makeSolarflare( solarflareUniforms ,fac);
-	sun.solarflare = solarflare;
-	sun.add( solarflare );	
+	// var solarflare = makeSolarflare( solarflareUniforms );
+	// sun.solarflare = solarflare;
+	// sun.add( solarflare );	
   // console.timeEnd("make sun solarflare");
 
 	//	2D overlay elements	
-	var gyro = new THREE.Gyroscope();
-	sun.add( gyro );	
-		sun.gyro = gyro;
+	// var gyro = new THREE.Gyroscope();
+	// sun.add( gyro );	
+		// sun.gyro = gyro;
 
     // console.time("make sun lensflare");
-		var starLensflare = makeStarLensflare(1.5, 0.0001, spectral);
-		sun.lensflare = starLensflare;
-		sun.lensflare.name == 'lensflare';
-		gyro.add( starLensflare );
+		// var starLensflare = makeStarLensflare(1.5, 0.0001, spectral);
+		// sun.lensflare = starLensflare;
+		// sun.lensflare.name == 'lensflare';
+		// gyro.add( starLensflare );
     // console.timeEnd("make sun lensflare");
 
 		//	the corona that lines the edge of the sun sphere
     // console.time("make sun halo");
-		var starHalo = makeStarHalo( haloUniforms );
-		gyro.add( starHalo );
+		// var starHalo = makeStarHalo( haloUniforms );
+		// gyro.add( starHalo );
     // console.timeEnd("make sun halo");
 	
     // console.time("make sun glow");
-		var starGlow = makeStarGlow( coronaUniforms );
-		gyro.add( starGlow );
+		// var starGlow = makeStarGlow( coronaUniforms );
+		// gyro.add( starGlow );
     // console.timeEnd("make sun glow");
 
 
@@ -303,8 +300,12 @@ function makeSun( options ){
 	// sun.rotation.y = 0.2;
 
 	sun.setSpectralIndex = function( index ){
-		// var starColor = map( index, -0.3, 1.52, 0, 1);	
-		var starColor = map(100,100.3,1.52,0,1)
+		// var starColor = map( index, -0.3, 1.52, 0, 1);
+		var starColor ;
+		if(options.color == null)	
+			starColor = map(0.1,0.1,0,0,10);
+		else
+			starColor = map(options.color.r,options.color.g,options.color.b,options.color.p,options.color.d)
 		starColor = constrain( starColor, 0.0, 1.0 );
 		this.starColor = starColor;
 
@@ -318,19 +319,19 @@ function makeSun( options ){
 		this.scale.setLength( index );
 		
 		//	remove old lensflare
-		this.gyro.remove( this.lensflare );
+		// this.gyro.remove( this.lensflare );
 
-		var lensflareSize = 4.0 + index * 0.5 + 0.1 * Math.pow(index,2);
-		if( lensflareSize < 1.5 )
-			lensflareSize = 1.5;
-		this.lensflare = makeStarLensflare( lensflareSize, 0.0002 * index, this.starColor );		
-		this.lensflare.name = 'lensflare';
-		this.gyro.add( this.lensflare );	
+		// var lensflareSize = 4.0 + index * 0.5 + 0.1 * Math.pow(index,2);
+		// if( lensflareSize < 1.5 )
+		// 	lensflareSize = 1.5;
+		// this.lensflare = makeStarLensflare( lensflareSize, 0.0002 * index, this.starColor );		
+		// this.lensflare.name = 'lensflare';
+		// this.gyro.add( this.lensflare );	
 	}
 
 	sun.randomizeSolarFlare = function(){
-		this.solarflare.rotation.x = Math.random() * Math.PI * 2;
-		this.solarflare.rotation.y = Math.random() * Math.PI * 2;
+		// this.solarflare.rotation.x = Math.random() * Math.PI * 2;
+		// this.solarflare.rotation.y = Math.random() * Math.PI * 2;
 	}
 
 	sun.setSpectralIndex( spectral );
@@ -346,14 +347,14 @@ function makeSun( options ){
 		//	is this the only way?
 		
 		if( camera.position.z > 400 ){
-			var lensflareChild = this.gyro.getObjectByName('lensflare');
-			if( lensflareChild !== undefined )
-				this.gyro.remove(  lensflareChild );
+			// var lensflareChild = this.gyro.getObjectByName('lensflare');
+			// if( lensflareChild !== undefined )
+				// this.gyro.remove(  lensflareChild );
 		}
 		else{
-			if( this.gyro.getObjectByName('lensflare') === undefined ){
-				this.gyro.add( this.lensflare );			
-			}
+			// if( this.gyro.getObjectByName('lensflare') === undefined ){
+				// this.gyro.add( this.lensflare );			
+			// }
 			
 		}
 		

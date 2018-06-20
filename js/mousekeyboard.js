@@ -88,15 +88,15 @@ function handleMWheel( delta ) {
 }
 
 function onMouseWheel( event ){
-	var delta = 0;
+	var delta = event.deltaY;
 
-	if (event.wheelDelta) { /* IE/Opera. */
-	        delta = event.wheelDelta/120;
-	} 
-	//	firefox
-	else if( event.detail ){
-		delta = -event.detail/3;
-	}
+	// if (event.wheelDelta) { /* IE/Opera. */
+	//         delta = event.wheelDelta/120;
+	// } 
+	// //	firefox
+	// else if( event.detail ){
+	// 	delta = -event.detail/3;
+	// }
 
 	if (delta)
 	    handleMWheel(delta);

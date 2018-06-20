@@ -66,7 +66,7 @@ function generateHipparcosStars(){
 	var starPreview = new THREE.Mesh( new THREE.PlaneGeometry( 40, 40 ), starPreviewMaterial );
 
 	var pLineGeo = new THREE.Geometry();
-
+	console.log(starData[0])
 	for( var i=0; i<count; i++ ){
 		var star = starData[i];
 

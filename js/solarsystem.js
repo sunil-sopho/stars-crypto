@@ -69,10 +69,10 @@ function makeOortCloud(){
 	var particles = new THREE.ParticleSystem( particlesGeo, material );
 
 	var oortInfo = new THREE.Gyroscope();
-	oortInfo.name = "Oort Cloud";
+	oortInfo.name = "";
 	oortInfo.position.set( dist, -dist , 0 );
 	oortInfo.scale.setLength( 0.1 );
-	attachLegacyMarker( "Oort Cloud", oortInfo, 1.0, {min:40.0, max: 500.0}  );
+	attachLegacyMarker( "", oortInfo, 1.0, {min:40.0, max: 500.0}  );
 
 	particles.add( oortInfo );
 
@@ -119,67 +119,91 @@ function makeSolarSystem(){
 	// represent the orbit path of planetry bodies in the solar system
 	//	use kilometers and convert to light years
 	//	mercury
-	var mercuryOrbit = createSpaceRadius( KMToLY(55000000), /*0x90745D*/ 0xffffff );
-	solarSystem.add( mercuryOrbit );
-	var mercury = createPlanet( 55000000, 2439.7 );
-	solarSystem.add( mercury );
-	attachLegacyMarker( "Mercury", mercury, 1.0, {min:3.4, max: 8.0} );	
+	// var mercuryOrbit = createSpaceRadius( KMToLY(55000000), /*0x90745D*/ 0xffffff );
+	// solarSystem.add( mercuryOrbit );
+	// var mercury = createPlanet( 55000000, 2439.7 );
+	// solarSystem.add( mercury );
+	// attachLegacyMarker( "", mercury, 1.0, {min:3.4, max: 8.0} );	
 
 	//	venus
-	var venusOrbit = createSpaceRadius( KMToLY(108000000), /*0x9E4738*/ 0xffffff );
+	var venusOrbit = createSpaceRadius( 3*KMToLY(108000000), /*0x9E4738*/ 0xffffff );
 	solarSystem.add( venusOrbit );
-	var venus = createPlanet( 108000000, 6051.8 );
+	// var venus = createPlanet( 108000000, 6051.8 );
+	var venus = makePlanet({
+			radius: 7.35144e-7,
+			spectral: 0.656,
+			color:{
+				r: 1.7,
+				g: 69,
+				b: 45,
+				p : -0.09,
+				d : 35
+			}
+		})
+	venus.position.x = 3*KMToLY(108000000);
 	solarSystem.add( venus );
-	attachLegacyMarker( "Venus", venus, 1.0, {min:3.6, max: 8.2} );	
+	attachLegacyMarker( "", venus, 1.0, {min:3.6, max: 8.2} );	
 
-	//	earth
-	var earthOrbit = createSpaceRadius( KMToLY(150000000), /*0x887F98*/ 0xffffff );
-	solarSystem.add( earthOrbit );
+	// //	earth
+	// var earthOrbit = createSpaceRadius( KMToLY(150000000), /*0x887F98*/ 0xffffff );
+	// solarSystem.add( earthOrbit );
 
-	var earth = createPlanet( 150000000, 6378.1 );
-	// var earthGeo = new THREE.SphereGeometry( KMToLY(12756.2), 12, 8 );
-	// earth = new THREE.Mesh( earthGeo, 
-	// 	new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( "images/earth.png" )} ) 
-	// );
-	// earth.position.x = KMToLY(150000000);
-	solarSystem.add( earth );
+	// var earth = createPlanet( 150000000, 6378.1 );
+	// // var earthGeo = new THREE.SphereGeometry( KMToLY(12756.2), 12, 8 );
+	// // earth = new THREE.Mesh( earthGeo, 
+	// // 	new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( "images/earth.png" )} ) 
+	// // );
+	// // earth.position.x = KMToLY(150000000);
+	// solarSystem.add( earth );
 
-	earth.name = "Earth";
-	attachLegacyMarker( "Earth", earth, 1.0, {min:3.8, max: 8.4} );
+	// earth.name = "Earth";
+	// attachLegacyMarker( "", earth, 1.0, {min:3.8, max: 8.4} );
 
 	//	the moon? sure why not...
 	// you can't even see it...
-	earth.add( createSpaceRadius( KMToLY(402652), 0xffffff, 16.0 ) );
+	// earth.add( createSpaceRadius( KMToLY(402652), 0xffffff, 16.0 ) );
 
 	//	mars
-	solarSystem.add( createSpaceRadius( KMToLY(230000000), /*0xCE6747*/ 0xffffff ) );	
-	var mars = createPlanet( 230000000, 3396.2 );
+	solarSystem.add( createSpaceRadius( 3*KMToLY(230000000), /*0xCE6747*/ 0xffffff ) );	
+	// var mars = createPlanet( 230000000, 3396.2 );
+		var mars = makePlanet({
+			radius: 7.35144e-7,
+			spectral: 0.656,
+			color:{
+				r: 0.2,
+				g: -0.3,
+				b: 1.52,
+				p : 78,
+				d : 4.9
+			}
+		})
+	mars.position.z = 3*KMToLY(230000000);
 	solarSystem.add( mars );
-	attachLegacyMarker( "Mars", mars, 1.0, {min:4.0, max: 8.6} );
+	attachLegacyMarker( "", mars, 1.0, {min:4.0, max: 8.6} );
 
-	//	jupiter
-	solarSystem.add( createSpaceRadius( KMToLY(778000000), /*0xCE6747*/ 0xffffff ) );
-	var jupiter = createPlanet( 778000000, 71492.2 );
-	solarSystem.add( jupiter );
-	attachLegacyMarker( "Jupiter", jupiter, 1.0, {min:8.0, max: 17.2} );
+	// //	jupiter
+	// solarSystem.add( createSpaceRadius( KMToLY(778000000), /*0xCE6747*/ 0xffffff ) );
+	// var jupiter = createPlanet( 778000000, 71492.2 );
+	// solarSystem.add( jupiter );
+	// attachLegacyMarker( "", jupiter, 1.0, {min:8.0, max: 17.2} );
 
-	//	saturn
-	solarSystem.add( createSpaceRadius( KMToLY(1400000000), /*0xCE6747*/ 0xffffff ) );
-	var saturn = createPlanet( 1400000000, 60268 );
-	solarSystem.add( saturn );
-	attachLegacyMarker( "Saturn", saturn, 1.0, {min:8.0, max: 17.6} );
+	// //	saturn
+	// solarSystem.add( createSpaceRadius( KMToLY(1400000000), /*0xCE6747*/ 0xffffff ) );
+	// var saturn = createPlanet( 1400000000, 60268 );
+	// solarSystem.add( saturn );
+	// attachLegacyMarker( "", saturn, 1.0, {min:8.0, max: 17.6} );
 
-	//	uranus
-	solarSystem.add( createSpaceRadius( KMToLY(3000000000), /*0xCE6747*/ 0xffffff ) );
-	var uranus = createPlanet( 3000000000, 25559 );
-	solarSystem.add( uranus );
-	attachLegacyMarker( "Uranus", uranus, 1.0, {min:8.0, max: 18.0} );
+	// //	uranus
+	// solarSystem.add( createSpaceRadius( KMToLY(3000000000), /*0xCE6747*/ 0xffffff ) );
+	// var uranus = createPlanet( 3000000000, 25559 );
+	// solarSystem.add( uranus );
+	// attachLegacyMarker( "", uranus, 1.0, {min:8.0, max: 18.0} );
 
-	//	neptune
-	solarSystem.add( createSpaceRadius( KMToLY(4500000000), /*0xCE6747*/ 0xffffff ) );
-	var neptune = createPlanet( 4500000000, 24764  );
-	solarSystem.add( neptune );
-	attachLegacyMarker( "Neptune", neptune, 1.0, {min:8.0, max: 20.0} );
+	// //	neptune
+	// solarSystem.add( createSpaceRadius( KMToLY(4500000000), /*0xCE6747*/ 0xffffff ) );
+	// var neptune = createPlanet( 4500000000, 24764  );
+	// solarSystem.add( neptune );
+	// attachLegacyMarker( "", neptune, 1.0, {min:8.0, max: 20.0} );
 
 	solarSystem.dynamic = true;
 
@@ -193,13 +217,13 @@ function makeSolarSystem(){
 			this.visible = false;
 		}
 	}
-	measurement.visible = true;
+	// measurement.visible = true;
 	var sub = new THREE.Object3D();
 	sub.position.x = 0.5;
 	sub.position.y = 0.08;
 	measurement.add( sub );
-	attachLegacyMarker( "One light year.", sub, 1.0, {min:120, max: 400} );
-	solarSystem.add( measurement );	
+	// attachLegacyMarker( "One light year.", sub, 1.0, {min:120, max: 400} );
+	// solarSystem.add( measurement );	
 
 	//	pioneer
 	//	18220700000 KM out
@@ -219,7 +243,7 @@ function makeSolarSystem(){
 }
 
 function createPlanet( distanceToSunKM, radiusKM ){
-	var planetGeo = new THREE.SphereGeometry( KMToLY( radiusKM ), 12, 8 );
+	var planetGeo = new THREE.SphereGeometry( 1000*KMToLY( radiusKM ), 12, 8 );
 	var planet = new THREE.Mesh( planetGeo );
 	planet.position.x = KMToLY(distanceToSunKM);
 	return planet;	
