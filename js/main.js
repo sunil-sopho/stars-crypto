@@ -12,10 +12,10 @@ var enableGalaxy = true;
 var enableDust = false; // flase form start
 var enableSolarSystem = true;
 var enableSpacePlane = true;
-var enableStarModel = true;
+var enableStarModel = false;
 var enableTour = true;
 var enableDirector = true;
-var enablePlanet = true;
+var enablePlanet = false;
 
 var firstTime = localStorage ? (localStorage.getItem('first') == null) : true;
 
@@ -96,9 +96,9 @@ function start( e ){
 
 var postStarGradientLoaded = function(){
 	gradientCanvas = document.createElement('canvas');
-	gradientCanvas.width = gradientImage.width;
-	gradientCanvas.height = gradientImage.height;
-	gradientCanvas.getContext('2d').drawImage( gradientImage, 0, 0, gradientImage.width, gradientImage.height );
+	// gradientCanvas.width = gradientImage.width;
+	// gradientCanvas.height = gradientImage.height;
+	// gradientCanvas.getContext('2d').drawImage( gradientImage, 0, 0, gradientImage.width, gradientImage.height );
 	gradientCanvas.getColor = function( percentage ){
 		return this.getContext('2d').getImageData(0,percentage * gradientImage.height, 1, 1).data;
 	}
@@ -242,7 +242,7 @@ function initScene() {
 	camera.position.z = 2000; //changes
 	camera.rotation.vx = 0;
 	camera.rotation.vy = 0;
-	camera.position.target = { x: 1, z: 70000, pz: 2000 };
+	camera.position.target = { x: 1, z: 900.1, pz: 2000 };
 
 	if( enableSkybox ){
 		setupSkyboxScene();
@@ -456,6 +456,12 @@ function sceneSetup(){
 			radius: 7.35144e-7,
 			spectral: 0.656,
 		});
+		var sun2 = makeSun({
+			radius: 7.35144e-7,
+			spectral: 0.656,
+		})
+		sun2.position.x = 0.00004;
+		sun2.position.y = 0.000001;
 		planet.position.x = 0.00005;
 		sphere2.position.x = 0.1
 		// sphere2.position.y = 0.1
@@ -463,6 +469,8 @@ function sceneSetup(){
 		// starModel.visible = false
 		console.log(planet.position)
 		translating.add(planet)
+		translating.add(sun2)
+
 				// centerOn( new THREE.Vector3(0.1,0.1,0.1) );
 		// zoomIn(1.4)
 

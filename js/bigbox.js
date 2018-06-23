@@ -10,14 +10,14 @@ function setupSkyboxScene(){
 
 function initSkybox( highres ){
 	setLoadMessage("Loading internal stars")
-	var r = "images/ss_skybox/";
+	var r = "images/ss_skyb/";
 
 	if( highres == false )
 		r += "s_";
 
-	var urls = [ r + "px.jpg", r + "nx.jpg",
-				 r + "py.jpg", r + "ny.jpg",
-				 r + "pz.jpg", r + "nz.jpg" ];
+	var urls = [ r + "px.png", r + "nx.png",
+				 r + "py.png", r + "ny.png",
+				 r + "pz.png", r + "nz.png" ];
 
 	var textureCube = THREE.ImageUtils.loadTextureCube( urls, undefined, setLoadMessage("Loading interstellar bodies") );
 	textureCube.anisotropy = maxAniso;
@@ -34,7 +34,7 @@ function initSkybox( highres ){
 		depthTest: false,
 	} );
 
-	skybox = new THREE.Mesh( new THREE.CubeGeometry( 100, 100, 100 ), skyboxMat );
+	skybox = new THREE.Mesh( new THREE.CubeGeometry( 1000, 1000, 1000 ), skyboxMat );
 	sceneCube.add( skybox );
 }
 

@@ -39,7 +39,7 @@ function generateGalaxy(){
 
 	var pGalaxy = new THREE.Geometry();	
 
-	var count = 100000;
+	var count = 100000// 100000;
 	var numArms = 5;
 	var arm = 0;
 	var countPerArm = count / numArms;

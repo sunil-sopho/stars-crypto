@@ -5,42 +5,46 @@ function createSpaceRadius( radius, color, representationScale ){
 	color = color ? color : 0xffffff;
 	representationScale = representationScale ? representationScale : 1;
 
-	var width = Math.sqrt(radius) * 0.00001 * representationScale;
-	var thickness = radius * 0.0005;
-	var textureRepeat = 30;
+	// var width = Math.sqrt(radius) * 0.00001 * representationScale;
+	// var thickness = radius * 0.0005;
+	// var textureRepeat = 30;
 
-	var resolution = 180;
-	var twoPI = Math.PI * 2;
-	var angPerRes = twoPI / resolution;	
-	var verts = [];
-	for( var i=0; i<twoPI; i+=angPerRes ){
-		var x = Math.cos( i ) * radius;
-		var y = Math.sin( i ) * radius;
-		var v = new THREE.Vector3( x,y,0 );
-		verts.push( v );
-	}
+	// var resolution = 180;
+	// var twoPI = Math.PI * 2;
+	// var angPerRes = twoPI / resolution;	
+	// var verts = [];
+	// for( var i=0; i<twoPI; i+=angPerRes ){
+	// 	var x = Math.cos( i ) * radius;
+	// 	var y = Math.sin( i ) * radius;
+	// 	var v = new THREE.Vector3( x,y,0 );
+	// 	verts.push( v );
+	// }
 
-	var geometry = new THREE.Geometry();
-	geometry.vertices = verts;
+	// var geometry = new THREE.Geometry();
+	// geometry.vertices = verts;
 
+	// var geometry1 = new THREE.RingGeometry( radius, radius+radius/200, 82 );
+	// var material1 = new THREE.MeshDepthMaterial( { color: 0x00ff00, side: THREE.DoubleSide } );
+	// var areaOfWindow = window.innerWidth * window.innerHeight;
 
-	var areaOfWindow = window.innerWidth * window.innerHeight;
+	// var pointSize = 0.000004 * areaOfWindow;
 
-	var pointSize = 0.000004 * areaOfWindow;
+	// var particleMaterial = new THREE.ParticleBasicMaterial( 
+	// 	{
+	// 		color: color, 
+	// 		size: pointSize, 
+	// 		sizeAttenuation: false, 
+	// 		map: guidePointTexture,
+	// 		blending: THREE.AdditiveBlending,
+	// 		depthTest: false,
+	// 		depthWrite: false,
+	// 	} 
+	// );
+	var geometry = new THREE.TorusGeometry( radius, 0.000000055, 40, 100 );
+	var material = new THREE.MeshBasicMaterial( { color: 0x3e68ad ,transparent:true} );
+	// var mesh = new THREE.ParticleSystem( geometry1, particleMaterial );
+	var mesh = new THREE.Mesh( geometry, material );
 
-	var particleMaterial = new THREE.ParticleBasicMaterial( 
-		{
-			color: color, 
-			size: pointSize, 
-			sizeAttenuation: false, 
-			map: guidePointTexture,
-			blending: THREE.AdditiveBlending,
-			depthTest: false,
-			depthWrite: false,
-		} 
-	);
-
-	var mesh = new THREE.ParticleSystem( geometry, particleMaterial );
 
 	mesh.update = function(){
 		if( camera.position.z < 2.0 )

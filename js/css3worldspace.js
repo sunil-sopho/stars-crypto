@@ -54,18 +54,23 @@ function getCSS3D_cameraStyle(camera, fov) {
 /************************************************************************/
 /* Fixes the difference between WebGL coordinates to CSS coordinates    */
 /************************************************************************/
+var tr = true
 function toCSSMatrix(threeMat4, b, offsetX, offsetY) {
     var a = threeMat4, f;
+    if(!b && tr){
+    console.log(a)
+    tr= false
+}
     if (b) {
         f = [
-            a.elements[0], -a.elements[1], a.elements[2], a.elements[3],
+            a.elements[0], -a.elements[1], a.elements[2], a.elements[3] ,
             a.elements[4], -a.elements[5], a.elements[6], a.elements[7],
             a.elements[8], -a.elements[9], a.elements[10], a.elements[11],
             a.elements[12], -a.elements[13], a.elements[14], a.elements[15]
         ];
     } else {
         f = [
-            a.elements[0], a.elements[1], a.elements[2], a.elements[3],
+            a.elements[0] , a.elements[1], a.elements[2], a.elements[3],
             a.elements[4], a.elements[5], a.elements[6], a.elements[7],
             a.elements[8], a.elements[9], a.elements[10], a.elements[11],
             a.elements[12] + (offsetX || 0), a.elements[13] + (offsetY || 0), a.elements[14], a.elements[15]

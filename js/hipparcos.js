@@ -20,7 +20,7 @@ var datastarTexture1 = THREE.ImageUtils.loadTexture( "images/p_2.png" );
 var datastarHeatVisionTexture = THREE.ImageUtils.loadTexture( "images/sharppoint.png" );
 
 //	bright flashy named stars graphic
-var starPreviewTexture = THREE.ImageUtils.loadTexture( 'images/star_preview.png', undefined, setLoadMessage("Focusing optics")	);
+var starPreviewTexture = THREE.ImageUtils.loadTexture( 'images/system.png', undefined, setLoadMessage("Focusing optics")	);
 var starColorGraph = THREE.ImageUtils.loadTexture( 'images/star_color_modified.png' );
 
 var datastarUniforms = {
@@ -63,11 +63,13 @@ function generateHipparcosStars(){
 		depthWrite: false,
 	});
 
-	var starPreview = new THREE.Mesh( new THREE.PlaneGeometry( 40, 40 ), starPreviewMaterial );
+	var starPreview = new THREE.Mesh( new THREE.PlaneGeometry( 6, 6 ), starPreviewMaterial );
 
 	var pLineGeo = new THREE.Geometry();
 	console.log(starData[0])
 	for( var i=0; i<count; i++ ){
+		if(i%10 != 0 )
+			continue;
 		var star = starData[i];
 
 		//	original data is in parsecs
@@ -206,7 +208,7 @@ function generateHipparcosStars(){
 			container.add(g);
 
 			// starPreview.name = star.name;
-			g.name = p.name;
+			// g.name = p.name;
 			g.spectralIndex = p.spectralIndex;
 			// console.log(g.name);
 			g.position.copy(p);
@@ -295,15 +297,15 @@ function generateHipparcosStars(){
 
 	//	-----------------------------------------------------------------------------
 	//	attach lines from star to plane base
-	var lineMesh = new THREE.Line( pLineGeo, new THREE.LineBasicMaterial({
-		color: 			0x333333,
-		blending: 		THREE.AdditiveBlending,
-		depthTest: 		false,
-		depthWrite: 	false,
-		transparent:	true,
+	// var lineMesh = new THREE.Line( pLineGeo, new THREE.LineBasicMaterial({
+	// 	color: 			0x333333,
+	// 	blending: 		THREE.AdditiveBlending,
+	// 	depthTest: 		false,
+	// 	depthWrite: 	false,
+	// 	transparent:	true,
 
-	}), THREE.LinePieces );
-	pSystem.add( lineMesh );
+	// }), THREE.LinePieces );
+	// pSystem.add( lineMesh );
 
 	//	-----------------------------------------------------------------------------
 	//	create a ring of degree marks around the plane
@@ -329,7 +331,7 @@ function generateHipparcosStars(){
 	var starBaseMaterial = new THREE.MeshBasicMaterial({
 		map: starBaseTexture,
 		blending: THREE.AdditiveBlending,
-		transparent: true,
+		transparent: false,
 		depthTest: false,
 		depthWrite: false,
 		side: THREE.DoubleSide,
@@ -421,20 +423,20 @@ function generateHipparcosStars(){
 		datastarUniforms.sceneSize.value = 10000;
 	}
 
-	lineMesh.update = function(){
-		if( camera.position.z < 1500 ){
-			this.material.opacity = constrain( (camera.position.z - 400.0) * 0.002, 0, 1); 
-		}
-		else{
-			this.material.opacity += (0.0 - this.material.opacity) * 0.1;
-		}
+	// lineMesh.update = function(){
+	// 	if( camera.position.z < 1500 ){
+	// 		this.material.opacity = constrain( (camera.position.z - 400.0) * 0.002, 0, 1); 
+	// 	}
+	// 	else{
+	// 		this.material.opacity += (0.0 - this.material.opacity) * 0.1;
+	// 	}
 
-		//	some basic LOD
-		if( camera.position.z < 250 )
-			this.visible = false;
-		else
-			this.visible = true;
-	}
+	// 	//	some basic LOD
+	// 	if( camera.position.z < 250 )
+	// 		this.visible = false;
+	// 	else
+	// 		this.visible = true;
+	// }
 
 	return container;
 }

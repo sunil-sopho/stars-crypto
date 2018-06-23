@@ -119,17 +119,10 @@ function makeSolarSystem(){
 	// represent the orbit path of planetry bodies in the solar system
 	//	use kilometers and convert to light years
 	//	mercury
-	// var mercuryOrbit = createSpaceRadius( KMToLY(55000000), /*0x90745D*/ 0xffffff );
-	// solarSystem.add( mercuryOrbit );
-	// var mercury = createPlanet( 55000000, 2439.7 );
-	// solarSystem.add( mercury );
-	// attachLegacyMarker( "", mercury, 1.0, {min:3.4, max: 8.0} );	
-
-	//	venus
-	var venusOrbit = createSpaceRadius( 3*KMToLY(108000000), /*0x9E4738*/ 0xffffff );
-	solarSystem.add( venusOrbit );
-	// var venus = createPlanet( 108000000, 6051.8 );
-	var venus = makePlanet({
+	var mercuryOrbit = createSpaceRadius( 3*KMToLY(55000000), /*0x90745D*/ 0xffffff );
+	solarSystem.add( mercuryOrbit );
+	var thetaa = 0
+	var obj = {
 			radius: 7.35144e-7,
 			spectral: 0.656,
 			color:{
@@ -139,10 +132,45 @@ function makeSolarSystem(){
 				p : -0.09,
 				d : 35
 			}
-		})
-	venus.position.x = 3*KMToLY(108000000);
-	solarSystem.add( venus );
-	attachLegacyMarker( "", venus, 1.0, {min:3.6, max: 8.2} );	
+		};
+	var obj2 = {
+		radius: 7.35144e-7*2,
+		spectral: 100.656,
+		color:{
+			r: 100.7,
+			g: 100,
+			b: 1.5,
+			p : 0,
+			d : 1
+		}
+	};
+	var plane = []
+	// mercury.position.x = 3*KMToLY(55000000);
+		for( var i =0;i<5;i++){
+			plane[i] = makePlanet(obj)
+			thetaa += 1/5;
+			plane[i].position.z = Math.sin(Math.PI * 2 *thetaa)*3*KMToLY(55000000);
+			plane[i].position.x = Math.cos(Math.PI * 2 *thetaa)*3*KMToLY(55000000);
+			solarSystem.add( plane[i]);
+		}
+
+	// attachLegacyMarker( "", mercury, 1.0, {min:3.4, max: 8.0} );	
+
+	//	venus
+	var venusOrbit = createSpaceRadius( 3*KMToLY(108000000), /*0x9E4738*/ 0xffffff );
+	venusOrbit.name="venus";
+	solarSystem.add( venusOrbit );
+	// var venus = createPlanet( 108000000, 6051.8 );
+	var plane2 = []
+	// mercury.position.x = 3*KMToLY(55000000);
+		for( var i =0;i<3;i++){
+			plane2[i] = makeSun(obj2)
+			thetaa += 1/3;
+			plane2[i].position.z = Math.sin(Math.PI * 2 *thetaa)*3*KMToLY(108000000);
+			plane2[i].position.x = Math.cos(Math.PI * 2 *thetaa)*3*KMToLY(108000000);
+			solarSystem.add( plane2[i]);
+		}
+	// attachLegacyMarker( "", venus, 1.0, {min:3.6, max: 8.2} );	
 
 	// //	earth
 	// var earthOrbit = createSpaceRadius( KMToLY(150000000), /*0x887F98*/ 0xffffff );
@@ -155,7 +183,7 @@ function makeSolarSystem(){
 	// // );
 	// // earth.position.x = KMToLY(150000000);
 	// solarSystem.add( earth );
-
+	// 
 	// earth.name = "Earth";
 	// attachLegacyMarker( "", earth, 1.0, {min:3.8, max: 8.4} );
 
@@ -166,20 +194,18 @@ function makeSolarSystem(){
 	//	mars
 	solarSystem.add( createSpaceRadius( 3*KMToLY(230000000), /*0xCE6747*/ 0xffffff ) );	
 	// var mars = createPlanet( 230000000, 3396.2 );
-		var mars = makePlanet({
-			radius: 7.35144e-7,
-			spectral: 0.656,
-			color:{
-				r: 0.2,
-				g: -0.3,
-				b: 1.52,
-				p : 78,
-				d : 4.9
-			}
-		})
-	mars.position.z = 3*KMToLY(230000000);
-	solarSystem.add( mars );
-	attachLegacyMarker( "", mars, 1.0, {min:4.0, max: 8.6} );
+		var mars=[]
+		thetaa = 0
+		for( var i =0;i<7;i++){
+			mars[i] = makePlanet(obj)
+			thetaa += 1/7;
+			mars[i].position.z = Math.sin(Math.PI * 2 *thetaa)*3*KMToLY(230000000);
+			mars[i].position.x = Math.cos(Math.PI * 2 *thetaa)*3*KMToLY(230000000);
+			solarSystem.add( mars[i]);
+
+		}
+	
+	// attachLegacyMarker( "", mars, 1.0, {min:4.0, max: 8.6} );
 
 	// //	jupiter
 	// solarSystem.add( createSpaceRadius( KMToLY(778000000), /*0xCE6747*/ 0xffffff ) );
