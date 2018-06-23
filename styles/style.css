@@ -57,6 +57,10 @@ body {
   user-select: none;
   position: absolute;
   padding: 0px 0px;
+  border: 2px solid blue;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
   cursor: pointer;
   -webkit-transform-style: preserve-3d;
   -moz-transform-style: preserve-3d;
@@ -66,6 +70,7 @@ body {
   -o-transition: opacity 0.5s;
   transition: opacity 0.5s; }
   .marker span.name {
+    display: none;
     color: #fff;
     text-shadow: 0 0 3px #fff, 0 0 10px #000;
     -webkit-transition: text-shadow 0.25s;

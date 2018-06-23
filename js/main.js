@@ -242,7 +242,7 @@ function initScene() {
 	camera.position.z = 2000; //changes
 	camera.rotation.vx = 0;
 	camera.rotation.vy = 0;
-	camera.position.target = { x: 1, z: 70000, pz: 2000 };
+	camera.position.target = { x: 1, z: 700, pz: 2000 };
 
 	if( enableSkybox ){
 		setupSkyboxScene();
