@@ -30,9 +30,7 @@ function attachMarker( obj, size ){
 	marker.absPosition = obj.position;
 	marker.size = size !== undefined ? size : 1.0;
 	marker.id = obj.name;
-	// marker.style.fontSize = 24 + 'px';	
-	marker.style.fontSize = 20 + 'px';	
-
+	marker.style.fontSize = 24 + 'px';	
 
 	marker.spectralIndex = obj.spectralIndex;
 
@@ -61,8 +59,8 @@ function attachMarker( obj, size ){
 	if( obj.name === "Rigel Kentaurus B" )
 		return;
 
-	// if( obj.name === "Rigel Kentaurus A" )
-		// nameLayer.innerHTML = "Alpha Centauri";
+	if( obj.name === "Rigel Kentaurus A" )
+		nameLayer.innerHTML = "Alpha Centauri";
 
 	marker.defaultSize = marker.style.fontSize;
 

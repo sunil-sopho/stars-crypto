@@ -12,7 +12,7 @@ var enableGalaxy = true;
 var enableDust = false; // flase form start
 var enableSolarSystem = true;
 var enableSpacePlane = true;
-var enableStarModel = false;
+var enableStarModel = true;
 var enableTour = true;
 var enableDirector = true;
 var enablePlanet = false;
@@ -487,7 +487,7 @@ function animate() {
 	camera.position.x = 0
 	// camera.lookAt.x = 0.000001
 	camera.update();
-	camera.markersVisible = camera.position.z < markerThreshold.max && camera.position.z > markerThreshold.min;
+	// camera.markersVisible = camera.position.z < markerThreshold.max && camera.position.z > markerThreshold.min;
 
 	lastRotateY = rotateY;
 

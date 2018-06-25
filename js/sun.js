@@ -8,8 +8,8 @@ var sunCoronaTexture;
 function loadStarSurfaceTextures(){
 	if( sunTexture === undefined ){
 		sunTexture = THREE.ImageUtils.loadTexture( "images/sun_surface.png", undefined, setLoadMessage("getting Planetry Bodies") );
-		sunTexture.anisotropy = maxAniso;
-		sunTexture.wrapS = sunTexture.wrapT = THREE.RepeatWrapping;
+		// sunTexture.anisotropy = maxAniso;
+		// sunTexture.wrapS = sunTexture.wrapT = THREE.RepeatWrapping;
 	}
 
 	if( sunColorLookupTexture === undefined ){
@@ -17,7 +17,7 @@ function loadStarSurfaceTextures(){
 	}
 
 	if( solarflareTexture === undefined ){
-		// solarflareTexture = THREE.ImageUtils.loadTexture( "images/solarflare.png", undefined, setLoadMessage("Fetching Fabula's Star")	 );
+		solarflareTexture = THREE.ImageUtils.loadTexture( "images/solarflare.png", undefined, setLoadMessage("Fetching Fabula's Star")	 );
 	}
 
 	if( sunHaloTexture === undefined ){
@@ -33,7 +33,7 @@ function loadStarSurfaceTextures(){
 	}
 }
 
-var surfaceGeo;// = new THREE.SphereGeometry( 7.35144e-8, 60, 30);
+var surfaceGeo = new THREE.SphereGeometry( 7.35144e-8, 60, 30);
 function makeStarSurface( radius, uniforms ){
 	var sunShaderMaterial = new THREE.ShaderMaterial( {
 		uniforms: 		uniforms,
@@ -45,7 +45,7 @@ function makeStarSurface( radius, uniforms ){
 	return sunSphere;
 }
 
-var haloGeo;// = new THREE.PlaneGeometry( .00000022, .00000022 );
+var haloGeo = new THREE.PlaneGeometry( .00000022, .00000022 );
 function makeStarHalo(uniforms){
 	var sunHaloMaterial = new THREE.ShaderMaterial(
 		{
@@ -69,7 +69,7 @@ function makeStarHalo(uniforms){
 	return sunHalo;
 }
 
-var glowGeo ;//= new THREE.PlaneGeometry( .0000012, .0000012 );
+var glowGeo = new THREE.PlaneGeometry( .0000012, .0000012 );
 function makeStarGlow(uniforms){
 	//	the bright glow surrounding everything
 	var sunGlowMaterial = new THREE.ShaderMaterial(
@@ -144,7 +144,7 @@ function makeStarLensflare(size, zextra, hueShift){
 	return sunLensFlare;
 }
 
-var solarflareGeometry ;//= new THREE.TorusGeometry( 0.00000003, 0.000000001 + 0.000000002, 60, 90, 0.15 + Math.PI  );
+var solarflareGeometry = new THREE.TorusGeometry( 0.00000003, 0.000000001 + 0.000000002, 60, 90, 0.15 + Math.PI  );
 function makeSolarflare( uniforms, fac ){
 	var solarflareMaterial = new THREE.ShaderMaterial(
 		{
@@ -177,7 +177,7 @@ function makeSolarflare( uniforms, fac ){
 		solarflareContainer.position.x = -1 + Math.random() * 2;
 		solarflareContainer.position.y = -1 + Math.random() * 2;
 		solarflareContainer.position.z = -1 + Math.random() * 2;
-		solarflareContainer.position.multiplyScalar(fac* 7.35144e-8 * 0.8 );
+		solarflareContainer.position.multiplyScalar( 7.35144e-8 * 0.8 );
 		solarflareContainer.lookAt( new THREE.Vector3(0,0,0) );
 		solarflareContainer.add( solarflare );
 
@@ -193,10 +193,10 @@ function makeSun( options ){
 	var fac = radius/7.35144e-8;
 	console.log(fac)
 	// fac = 0;
-	surfaceGeo = new THREE.SphereGeometry( radius, 60, 30);
-	haloGeo = new THREE.PlaneGeometry( fac*0.00000022,fac* 0.00000022 );
-	glowGeo = new THREE.PlaneGeometry( fac* 0.0000012,fac * 0.0000012 );
-	solarflareGeometry = new THREE.TorusGeometry( fac*0.00000003,fac* 0.000000001 + fac*0.000000002, 60, 90, 0.15 + Math.PI  );
+	// surfaceGeo = new THREE.SphereGeometry( radius, 60, 30);
+	// haloGeo = new THREE.PlaneGeometry( fac*0.00000022,fac* 0.00000022 );
+	// glowGeo = new THREE.PlaneGeometry( fac* 0.0000012,fac * 0.0000012 );
+	// solarflareGeometry = new THREE.TorusGeometry( fac*0.00000003,fac* 0.000000001 + fac*0.000000002, 60, 90, 0.15 + Math.PI  );
   // console.time("load sun textures"); 
 	loadStarSurfaceTextures();
   // console.timeEnd("load sun textures");

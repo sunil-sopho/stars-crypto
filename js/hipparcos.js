@@ -68,7 +68,7 @@ function generateHipparcosStars(){
 	var pLineGeo = new THREE.Geometry();
 	console.log(starData[0])
 	for( var i=0; i<count; i++ ){
-		if(i%10 != 0 )
+		if(i%4 != 0 )
 			continue;
 		var star = starData[i];
 
@@ -268,12 +268,12 @@ function generateHipparcosStars(){
 		container.heatVision = !container.heatVision;
 
 		if( container.heatVision ){
-			// $spectralGraph.css({opacity:1});
+			$spectralGraph.css({opacity:1});
 			$spectralGraph.addClass('heatvision').fadeIn();
 			$iconNav.addClass('heatvision');
 		}
 		else{
-			// $spectralGraph.css({opacity:0});
+			$spectralGraph.css({opacity:0});
 			$spectralGraph.removeClass('heatvision').fadeOut();
 			$iconNav.removeClass('heatvision');
 		}
@@ -305,7 +305,7 @@ function generateHipparcosStars(){
 		transparent:	true,
 
 	}), THREE.LinePieces );
-	pSystem.add( lineMesh );
+	// pSystem.add( lineMesh );
 
 	//	-----------------------------------------------------------------------------
 	//	create a ring of degree marks around the plane
@@ -425,12 +425,12 @@ function generateHipparcosStars(){
 	}
 
 	lineMesh.update = function(){
-		if( camera.position.z < 1500 ){
-			this.material.opacity = constrain( (camera.position.z - 400.0) * 0.002, 0, 1); 
-		}
-		else{
-			this.material.opacity += (0.0 - this.material.opacity) * 0.1;
-		}
+	// 	if( camera.position.z < 1500 ){
+	// 		this.material.opacity = constrain( (camera.position.z - 400.0) * 0.002, 0, 1); 
+	// 	}
+	// 	else{
+	// 		this.material.opacity += (0.0 - this.material.opacity) * 0.1;
+	// 	}
 
 		//	some basic LOD
 		if( camera.position.z < 250 )
