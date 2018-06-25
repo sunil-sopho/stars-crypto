@@ -36,7 +36,7 @@ function attachMarker( obj, size ){
 
 	marker.spectralIndex = obj.spectralIndex;
 
-	setDivPosition( marker, obj );
+	setDivPosition( marker, obj ,2000);
 
 	var nameLayer = marker.children[0];
 
@@ -234,7 +234,7 @@ function attachMarker( obj, size ){
 		var s = (0.05 + camera.position.z / 2000) * this.size;
 		s = constrain( s, 0, 1 );
 
-		setDivPosition( this, this.obj, s );
+		setDivPosition( this, this.obj, s ,camera.position.z);
 		this.setVisible( camera.markersVisible );
 
 	};

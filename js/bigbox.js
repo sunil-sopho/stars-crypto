@@ -34,7 +34,7 @@ function initSkybox( highres ){
 		depthTest: false,
 	} );
 
-	skybox = new THREE.Mesh( new THREE.CubeGeometry( 1000, 1000, 1000 ), skyboxMat );
+	skybox = new THREE.Mesh( new THREE.CubeGeometry( 100, 100, 100 ), skyboxMat );
 	sceneCube.add( skybox );
 }
 
@@ -65,7 +65,7 @@ function updateSkybox(override){
 	cameraCube.fov = constrain( camera.position.z * 20.0, 60, 70);
 	cameraCube.updateProjectionMatrix();
 
-	var skyboxBrightness = constrain(1400 / camera.position.z, 0.0, 1.0);
+	var skyboxBrightness = constrain(50 / camera.position.z, 0.0, 1.0);
 	skyboxUniforms["opacity"].value = skyboxBrightness;
 	// skyboxUniforms["opacity"].value = 1.0;
 }

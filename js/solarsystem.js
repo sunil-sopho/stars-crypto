@@ -92,8 +92,8 @@ function makeKuiperBelt(){
 function makeSolarSystem(){
 	var solarSystem = new THREE.Object3D();
 
-	var oortCloud = makeOortCloud();
-	solarSystem.add( oortCloud );
+	// var oortCloud = makeOortCloud();
+	// solarSystem.add( oortCloud );
 
 	// var kuiperBelt = makeKuiperBelt();
 	// solarSystem.add( kuiperBelt );
@@ -192,6 +192,49 @@ function makeSolarSystem(){
 	// earth.add( createSpaceRadius( KMToLY(402652), 0xffffff, 16.0 ) );
 
 	//	mars
+	// var color = new THREE.Color( 0xff0000 );
+	// var fog1 = new THREE.Fog(color,0.1,10000)
+	// solarSystem.add(fog1)
+	var diskGeometry1 = [];
+	var diskMaterial1 = [];
+	var disk1 = [];
+	var disks = []
+	for(var hj = 0 ;hj<1000;hj++){
+		diskGeometry1.push(new THREE.RingGeometry( 3*KMToLY(100000000 + 30*hj*10000), 3*KMToLY(108000000 +30*(hj+1)*10000), 32 ));
+		if(hj < 500){
+			if(hj%2)
+			diskMaterial1.push(new THREE.MeshBasicMaterial( { color: 0x00ff00, side: THREE.DoubleSide,transparent:true,opacity: Math.min((hj*hj)/(10000*(1000-hj)),0.0025) } ));
+			else
+			diskMaterial1.push(new THREE.MeshBasicMaterial( { color: 0x0000ff, side: THREE.DoubleSide,transparent:true,opacity: Math.min((hj*hj)/(10000*(1000-hj)),0.0025) } ));
+
+		}
+		else{
+			if(hj%2)
+			diskMaterial1.push(new THREE.MeshBasicMaterial( { color: 0x0000ff, side: THREE.DoubleSide,transparent:true,opacity: Math.min((1000-hj)*(1000-hj)/(10000*hj),0.0025) } ));
+			else
+			diskMaterial1.push(new THREE.MeshBasicMaterial( { color: 0x00ff00, side: THREE.DoubleSide,transparent:true,opacity: Math.min((1000-hj)*(1000-hj)/(10000*hj),0.0025) } ));
+
+		}
+		disk1.push(new THREE.Mesh( diskGeometry1[hj], diskMaterial1[hj] ));
+		disk1[hj].rotation.x = Math.PI/2;
+		// disks.push(disk1)
+		solarSystem.add(disk1[hj])
+	}
+
+	// var diskGeometry2 = new THREE.RingGeometry( 3*KMToLY(108000000), 3*KMToLY(230000000), 32 );
+	// var diskMaterial2 = new THREE.MeshBasicMaterial( { color: 0x00ff00, side: THREE.DoubleSide,transparent:true,opacity: 0.1 } );
+	// diskMaterial2.fog = true
+	// var disk2 = new THREE.Mesh( diskGeometry2, diskMaterial2 );
+	// disk2.rotation.x = Math.PI/2;
+	// solarSystem.add(disk2)
+
+
+	// var diskGeometry3 = new THREE.RingGeometry( 3*KMToLY(230000000), 3*KMToLY(260000000), 32 );
+	// var diskMaterial3 = new THREE.MeshBasicMaterial( { color: 0x00ff00, side: THREE.DoubleSide,transparent:true,opacity: 0.06 } );
+	// var disk3 = new THREE.Mesh( diskGeometry3, diskMaterial3 );
+	// disk3.rotation.x = Math.PI/2;
+	// solarSystem.add(disk3)
+
 	solarSystem.add( createSpaceRadius( 3*KMToLY(230000000), /*0xCE6747*/ 0xffffff ) );	
 	// var mars = createPlanet( 230000000, 3396.2 );
 		var mars=[]
@@ -254,12 +297,12 @@ function makeSolarSystem(){
 	//	pioneer
 	//	18220700000 KM out
 
-	oortCloud.update = function(){
-		if( camera.position.z > 40 && camera.position.z < 600 )
-			this.visible = true;
-		else
-			this.visible = false;
-	}
+	// oortCloud.update = function(){
+	// 	if( camera.position.z > 40 && camera.position.z < 600 )
+	// 		this.visible = true;
+	// 	else
+	// 		this.visible = false;
+	// }
 
 	//makeSunEarthDiagram();
 

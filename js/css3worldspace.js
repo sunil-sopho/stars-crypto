@@ -46,7 +46,7 @@ function getCSS3D_cameraStyle(camera, fov) {
     camera.updateProjectionMatrix();
     var cssStyle = "";
     cssStyle += "translate3d(0,0," + epsilon(fov) + "px) ";
-    cssStyle += toCSSMatrix(camera.matrixWorldInverse, true);
+    cssStyle += toCSSMatrix(camera.matrixWorldInverse, true,camera.position.z);
     cssStyle += " translate3d(" + screenWhalf + "px," + screenHhalf + "px, 0)";
     return cssStyle;
 }
@@ -54,13 +54,15 @@ function getCSS3D_cameraStyle(camera, fov) {
 /************************************************************************/
 /* Fixes the difference between WebGL coordinates to CSS coordinates    */
 /************************************************************************/
-var tr = true
-function toCSSMatrix(threeMat4, b, offsetX, offsetY) {
+// var tr = true
+function toCSSMatrix(threeMat4, b, offsetX, offsetY,camZ) {
     var a = threeMat4, f;
-    if(!b && tr){
-    console.log(a)
-    tr= false
-}
+    // if(!b && tr){
+    offsetY = offsetY/3
+
+    // console.log(a.elements[13] + (offsetY+88)*((camZ-300)/1950)*((camZ-300)/1950)-4)
+    // tr= false
+// }
     if (b) {
         f = [
             a.elements[0], -a.elements[1], a.elements[2], a.elements[3] ,
@@ -73,7 +75,7 @@ function toCSSMatrix(threeMat4, b, offsetX, offsetY) {
             a.elements[0] , a.elements[1], a.elements[2], a.elements[3],
             a.elements[4], a.elements[5], a.elements[6], a.elements[7],
             a.elements[8], a.elements[9], a.elements[10], a.elements[11],
-            a.elements[12] + (offsetX || 0), a.elements[13] + (offsetY || 0), a.elements[14], a.elements[15]
+            a.elements[12] - 0.42*(offsetX||0)*((camZ-780)/550)*((camZ-780)/550)-4.99*(camZ+0)/3000, a.elements[13] + (offsetY+8)*((camZ-320)/1950)*((camZ-320)/1950)+3.4 , a.elements[14], a.elements[15]
         ];                  // Hack to make sure the text is centered
     }
     for (var e in f) {
@@ -85,10 +87,10 @@ function toCSSMatrix(threeMat4, b, offsetX, offsetY) {
 /************************************************************************/
 /* Computes CSS3D transformations based on a Three Object                */
 /************************************************************************/
-function setDivPosition(cssObject, glObject, scale) {
+function setDivPosition(cssObject, glObject, scale,camZ) {
     glObject.updateMatrix();
     cssObject.style.position = "absolute";
-    var transformation = CSStransform(1.0, 3.5, glObject.matrixWorld, scale);
+    var transformation = CSStransform(1.0, 3.5, glObject.matrixWorld, scale,camZ);
     //Webkit:
     cssObject.style.WebkitTransformOrigin = "0% 0%";
     cssObject.style.WebkitTransform = transformation;
@@ -100,8 +102,8 @@ function setDivPosition(cssObject, glObject, scale) {
 /************************************************************************/
 /* Helper function to convert to CSS3D transformations                  */
 /************************************************************************/
-function CSStransform(width, height, matrix, scale) {
-    return [toCSSMatrix(matrix, false, width, height),
+function CSStransform(width, height, matrix, scale,camZ) {
+    return [toCSSMatrix(matrix, false, width, height,camZ),
     "scale3d(" + scale + ", -" + scale + ", " + scale + ")",
     "translate3d(0,0,0)"].join(" ");
 }
