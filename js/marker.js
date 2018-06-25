@@ -30,7 +30,9 @@ function attachMarker( obj, size ){
 	marker.absPosition = obj.position;
 	marker.size = size !== undefined ? size : 1.0;
 	marker.id = obj.name;
-	marker.style.fontSize = 24 + 'px';	
+	// marker.style.fontSize = 24 + 'px';	
+	marker.style.fontSize = 20 + 'px';	
+
 
 	marker.spectralIndex = obj.spectralIndex;
 
@@ -42,11 +44,22 @@ function attachMarker( obj, size ){
 	var system = starSystems[obj.name];
 
 	if( system !== undefined ){
-		var systemName = system.name;
-		nameLayer.innerHTML = systemName;
+		var intoHTML = `<div class="c100 p25">		
+		  <span>25%</span>		
+		  <div class="slice">		
+			<div class="bar"></div>		
+			<div class="fill"></div>		
+		  </div>		
+		</div>`
 	}
 	else{
-		nameLayer.innerHTML = obj.name;
+		var intoHTML = `<div class="c100 p0">
+		  <div class="slice">		
+			<div class="bar"></div>		
+			<div class="fill"></div>		
+		  </div>		
+		</div>`
+		nameLayer.innerHTML = intoHTML;
 	}
 
 	//	because these stars appear in the db as named stars and they are so closely packed together
@@ -59,8 +72,8 @@ function attachMarker( obj, size ){
 	if( obj.name === "Rigel Kentaurus B" )
 		return;
 
-	if( obj.name === "Rigel Kentaurus A" )
-		nameLayer.innerHTML = "Alpha Centauri";
+	// if( obj.name === "Rigel Kentaurus A" )
+		// nameLayer.innerHTML = "Alpha Centauri";
 
 	marker.defaultSize = marker.style.fontSize;
 
@@ -113,14 +126,6 @@ function attachMarker( obj, size ){
 
 		};
 
-		marker.$.hover( function(e){
-			var ideal = 20;
-			var posAvgRange = 200;
-			marker.style.fontSize = ( 10 + ideal * (camera.position.z / posAvgRange) ) + 'px';
-		},
-		function(e){
-			marker.style.fontSize = marker.defaultSize;
-		});
 
 		var markerClick = function(e){
 
@@ -171,6 +176,35 @@ function attachMarker( obj, size ){
 		}
 
 		marker.$.bind('click', markerClick );
+		var intvl;
+		marker.$.hover(function () {
+			console.log('hover in');
+			var timer = 0;
+			intvl = setInterval(() => {
+				if(timer < 100) {
+					for(i=0 ; i<20; i++) {
+					$(this).children().children().removeClass("p"+timer);
+					timer = timer + 1;
+					$(this).children().children().addClass("p"+timer);
+				}
+			}
+		}, 5);
+
+		},
+		function () {
+			var timer = 100;	
+			clearInterval(intvl);		
+			$(this).children().children().attr("class","c100 p100");			
+			setInterval(() => {
+				if(timer > 0) {
+					for(i=0 ; i<20; i++) {
+					$(this).children().children().removeClass("p"+timer);
+					timer = timer - 1;
+					$(this).children().children().addClass("p"+timer);
+				}
+			}
+			}, 5);
+		});
 		marker.$.bind('touchstart', markerTouch );
 
 	}

@@ -4,7 +4,7 @@ function makeStarModels(){
 	setLoadMessage("Forging stars")
 	var model = makeSun(
 		{
-			radius: (7.35144e-6)*(0.4),
+			radius: 7.35144e-7*.1,
 			spectral: 0.656,
 		}
 	);

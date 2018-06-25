@@ -7,7 +7,7 @@ var sunCoronaTexture;
 
 function loadStarSurfaceTextures(){
 	if( sunTexture === undefined ){
-		sunTexture = THREE.ImageUtils.loadTexture( "images/sun_surface.png", undefined, setLoadMessage("Igniting solar plasma") );
+		sunTexture = THREE.ImageUtils.loadTexture( "images/sun_surface.png", undefined, setLoadMessage("getting Planetry Bodies") );
 		sunTexture.anisotropy = maxAniso;
 		sunTexture.wrapS = sunTexture.wrapT = THREE.RepeatWrapping;
 	}
@@ -17,11 +17,11 @@ function loadStarSurfaceTextures(){
 	}
 
 	if( solarflareTexture === undefined ){
-		solarflareTexture = THREE.ImageUtils.loadTexture( "images/solarflare.png", undefined, setLoadMessage("Distributing solar flares")	 );
+		// solarflareTexture = THREE.ImageUtils.loadTexture( "images/solarflare.png", undefined, setLoadMessage("Fetching Fabula's Star")	 );
 	}
 
 	if( sunHaloTexture === undefined ){
-		sunHaloTexture = THREE.ImageUtils.loadTexture( "images/sun_halo.png", undefined, setLoadMessage("Calculating coronal mass") );
+		sunHaloTexture = THREE.ImageUtils.loadTexture( "images/sun_halo.png", undefined, setLoadMessage(" Generating Info") );
 	}
 
 	if( sunHaloColorTexture === undefined ){
@@ -29,7 +29,7 @@ function loadStarSurfaceTextures(){
 	}
 
 	if( sunCoronaTexture === undefined ){
-		sunCoronaTexture = THREE.ImageUtils.loadTexture( "images/corona.png", undefined, setLoadMessage("Projecting coronal ejecta") );
+		sunCoronaTexture = THREE.ImageUtils.loadTexture( "images/corona.png", undefined, setLoadMessage("Almost Ready") );
 	}
 }
 
@@ -191,7 +191,8 @@ function makeSun( options ){
 	var radius = options.radius;
 	var spectral = options.spectral;
 	var fac = radius/7.35144e-8;
-
+	console.log(fac)
+	// fac = 0;
 	surfaceGeo = new THREE.SphereGeometry( radius, 60, 30);
 	haloGeo = new THREE.PlaneGeometry( fac*0.00000022,fac* 0.00000022 );
 	glowGeo = new THREE.PlaneGeometry( fac* 0.0000012,fac * 0.0000012 );
@@ -303,8 +304,8 @@ function makeSun( options ){
 	// sun.rotation.y = 0.2;
 
 	sun.setSpectralIndex = function( index ){
-		// var starColor = map( index, -0.3, 1.52, 0, 1);	
-		var starColor = map(100,100.3,1.52,0,1)
+		var starColor = map( index, -0.3, 1.52, 0, 1);	
+		// var starColor = map(0.61,-0.03,1.50,0,1)
 		starColor = constrain( starColor, 0.0, 1.0 );
 		this.starColor = starColor;
 

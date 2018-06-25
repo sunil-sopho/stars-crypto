@@ -268,7 +268,7 @@ function makePlanet( options ){
 	var latticeMaterial = new THREE.MeshBasicMaterial({
 		map: glowSpanTexture,
 		blending: THREE.AdditiveBlending,
-		transparent: true,
+		transparent: false,
 		depthTest: true,
 		depthWrite: true,		
 		wireframe: true,

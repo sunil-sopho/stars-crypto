@@ -54,13 +54,10 @@ body {
    See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
   */
   -ms-user-select: none;
+  /*left:;*/
   user-select: none;
   position: absolute;
   padding: 0px 0px;
-  border: 2px solid blue;
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
   cursor: pointer;
   -webkit-transform-style: preserve-3d;
   -moz-transform-style: preserve-3d;
@@ -70,7 +67,6 @@ body {
   -o-transition: opacity 0.5s;
   transition: opacity 0.5s; }
   .marker span.name {
-    display: none;
     color: #fff;
     text-shadow: 0 0 3px #fff, 0 0 10px #000;
     -webkit-transition: text-shadow 0.25s;
@@ -80,6 +76,9 @@ body {
     transition: text-shadow 0.25s; }
     .marker span.name:hover {
       text-shadow: 0 0 3px #fff, 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff; }
+  .marker.label {
+    display: none;
+  }
   .marker.label span.name {
     cursor: default !important;
     font-size-adjust: none; }
