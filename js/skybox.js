@@ -10,14 +10,14 @@ function setupSkyboxScene(){
 
 function initSkybox( highres ){
 	setLoadMessage("Loading internal stars")
-	var r = "images/ss_skybox/";
+	var r = "images/ss_skybi/";
 
 	if( highres == false )
 		r += "s_";
 
-	var urls = [ r + "px.jpg", r + "nx.jpg",
-				 r + "py.jpg", r + "ny.jpg",
-				 r + "pz.jpg", r + "nz.jpg" ];
+	var urls = [ r + "px.png", r + "nx.png",
+				 r + "py.png", r + "ny.png",
+				 r + "pz.png", r + "nz.png" ];
 
 	var textureCube = THREE.ImageUtils.loadTextureCube( urls, undefined, setLoadMessage("Loading interstellar bodies") );
 	textureCube.anisotropy = maxAniso;
@@ -27,11 +27,11 @@ function initSkybox( highres ){
 	skyboxUniforms = shader.uniforms;
 	var skyboxMat = new THREE.ShaderMaterial( {
 		fragmentShader: shaderList.cubemapcustom.fragment,
-		vertexShader: shaderList.cubemapcustom.vertex,
-		uniforms: shader.uniforms,
-		side: THREE.BackSide,
-		depthWrite: false,
-		depthTest: false,
+		vertexShader: 	shaderList.cubemapcustom.vertex,
+		uniforms: 		shader.uniforms,
+		side: 			THREE.BackSide,
+		depthWrite: 	false,
+		depthTest: 		false,
 	} );
 
 	skybox = new THREE.Mesh( new THREE.CubeGeometry( 100, 100, 100 ), skyboxMat );
@@ -65,7 +65,7 @@ function updateSkybox(override){
 	cameraCube.fov = constrain( camera.position.z * 20.0, 60, 70);
 	cameraCube.updateProjectionMatrix();
 
-	var skyboxBrightness = constrain(1400 / camera.position.z, 0.0, 1.0);
+	var skyboxBrightness = constrain(1.4 / camera.position.z, 0.0, 1.0);
 	skyboxUniforms["opacity"].value = skyboxBrightness;
 	// skyboxUniforms["opacity"].value = 1.0;
 }

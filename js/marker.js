@@ -36,7 +36,7 @@ function attachMarker( obj, size ){
 
 	marker.spectralIndex = obj.spectralIndex;
 
-	setDivPosition( marker, obj );
+	setDivPosition( marker, obj ,2000);
 
 	var nameLayer = marker.children[0];
 
@@ -44,13 +44,13 @@ function attachMarker( obj, size ){
 	var system = starSystems[obj.name];
 
 	if( system !== undefined ){
-		var intoHTML = `<div class="c100 p25">		
-		  <span>25%</span>		
+		var intoHTML = `<div class="c100 p0">
 		  <div class="slice">		
 			<div class="bar"></div>		
 			<div class="fill"></div>		
 		  </div>		
 		</div>`
+		nameLayer.innerHTML = intoHTML;
 	}
 	else{
 		var intoHTML = `<div class="c100 p0">
@@ -266,7 +266,7 @@ function attachMarker( obj, size ){
 		var s = (0.05 + camera.position.z / 2000) * this.size;
 		s = constrain( s, 0, 1 );
 
-		setDivPosition( this, this.obj, s );
+		setDivPosition( this, this.obj, s ,camera.position.z);
 		this.setVisible( camera.markersVisible );
 
 	};

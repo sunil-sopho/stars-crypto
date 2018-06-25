@@ -208,7 +208,7 @@ function generateHipparcosStars(){
 			container.add(g);
 
 			// starPreview.name = star.name;
-			// g.name = p.name;
+			g.name = p.name;
 			g.spectralIndex = p.spectralIndex;
 			// console.log(g.name);
 			g.position.copy(p);
@@ -297,15 +297,15 @@ function generateHipparcosStars(){
 
 	//	-----------------------------------------------------------------------------
 	//	attach lines from star to plane base
-	// var lineMesh = new THREE.Line( pLineGeo, new THREE.LineBasicMaterial({
-	// 	color: 			0x333333,
-	// 	blending: 		THREE.AdditiveBlending,
-	// 	depthTest: 		false,
-	// 	depthWrite: 	false,
-	// 	transparent:	true,
+	var lineMesh = new THREE.Line( pLineGeo, new THREE.LineBasicMaterial({
+		color: 			0x333333,
+		blending: 		THREE.AdditiveBlending,
+		depthTest: 		false,
+		depthWrite: 	false,
+		transparent:	true,
 
-	// }), THREE.LinePieces );
-	// pSystem.add( lineMesh );
+	}), THREE.LinePieces );
+	pSystem.add( lineMesh );
 
 	//	-----------------------------------------------------------------------------
 	//	create a ring of degree marks around the plane
@@ -331,7 +331,7 @@ function generateHipparcosStars(){
 	var starBaseMaterial = new THREE.MeshBasicMaterial({
 		map: starBaseTexture,
 		blending: THREE.AdditiveBlending,
-		transparent: false,
+		transparent: true,
 		depthTest: false,
 		depthWrite: false,
 		side: THREE.DoubleSide,
@@ -348,6 +348,7 @@ function generateHipparcosStars(){
 	var baseGeometryCombined = new THREE.Geometry();
 	var circles = new THREE.Object3D();
 	for( var i in pGeo.vertices ){
+		// 402343595217f687a5df1a318941a545bd57b61aconsole.log(i)
 		var p = pGeo.vertices[i];
 		if( p.name!==undefined && p.name.length > 0 ){
 			var geo = starBaseGeometry.clone();
@@ -423,20 +424,20 @@ function generateHipparcosStars(){
 		datastarUniforms.sceneSize.value = 10000;
 	}
 
-	// lineMesh.update = function(){
-	// 	if( camera.position.z < 1500 ){
-	// 		this.material.opacity = constrain( (camera.position.z - 400.0) * 0.002, 0, 1); 
-	// 	}
-	// 	else{
-	// 		this.material.opacity += (0.0 - this.material.opacity) * 0.1;
-	// 	}
+	lineMesh.update = function(){
+		if( camera.position.z < 1500 ){
+			this.material.opacity = constrain( (camera.position.z - 400.0) * 0.002, 0, 1); 
+		}
+		else{
+			this.material.opacity += (0.0 - this.material.opacity) * 0.1;
+		}
 
-	// 	//	some basic LOD
-	// 	if( camera.position.z < 250 )
-	// 		this.visible = false;
-	// 	else
-	// 		this.visible = true;
-	// }
+		//	some basic LOD
+		if( camera.position.z < 250 )
+			this.visible = false;
+		else
+			this.visible = true;
+	}
 
 	return container;
 }
