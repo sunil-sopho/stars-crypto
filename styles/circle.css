@@ -105,8 +105,8 @@
 .c100.p100 .fill {
   position: absolute;
   border: 0.08em solid #307bbb;
-  width: 0.84em;
-  height: 0.84em;
+  width: 0.6em;
+  height: 0.6em;
   clip: rect(0em, 0.5em, 1em, 0em);
   border-radius: 50%;
   -webkit-transform: rotate(0deg);
@@ -223,8 +223,9 @@
   transform: rotate(180deg);
 }
 .c100 {
-  position: relative;
-  font-size: 120px;
+  position: absolute;
+  top: -1.6px;
+  font-size: 70px;
   width: 1em;
   height: 1em;
   border-radius: 50%;

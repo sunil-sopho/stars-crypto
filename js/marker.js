@@ -31,20 +31,22 @@ function attachMarker( obj, size ){
 	marker.size = size !== undefined ? size : 1.0;
 	marker.id = obj.name;
 	// marker.style.fontSize = 24 + 'px';	
-	marker.style.fontSize = 20 + 'px';	
+	//marker.style.fontSize = 20 + 'px';	
 
 
 	marker.spectralIndex = obj.spectralIndex;
 
 	setDivPosition( marker, obj ,2000);
 
-	var nameLayer = marker.children[0];
+	var nameLayer = marker;
 
 	//	get the formal name of the star	
 	var system = starSystems[obj.name];
 
 	if( system !== undefined ){
-		var intoHTML = `<div class="c100 p0">
+		var intoHTML = `
+		<div class="name">`+system.name+`</div>
+		<div class="c100 p0">
 		  <div class="slice">		
 			<div class="bar"></div>		
 			<div class="fill"></div>		
@@ -65,12 +67,12 @@ function attachMarker( obj, size ){
 	//	because these stars appear in the db as named stars and they are so closely packed together
 	//	we need to force them to be smaller font
 	//	totally sucks :|
-	if( obj.name === "Proxima Centauri" || obj.name === "Rigel Kentaurus A" || obj.name === "Rigel Kentaurus B" )
-		marker.style.fontSize = 10 + 'px';	
+	//if( obj.name === "Proxima Centauri" || obj.name === "Rigel Kentaurus A" || obj.name === "Rigel Kentaurus B" )
+	//	marker.style.fontSize = 10 + 'px';	
 
 	//	let's not even do Alpha Centauri B here because it just leads to the same description
-	if( obj.name === "Rigel Kentaurus B" )
-		return;
+	//if( obj.name === "Rigel Kentaurus B" )
+	//	return;
 
 	// if( obj.name === "Rigel Kentaurus A" )
 		// nameLayer.innerHTML = "Alpha Centauri";
@@ -136,7 +138,6 @@ function attachMarker( obj, size ){
 			var vec = marker.absPosition.clone();
 
 			if (vec.length() !== 0 ) {
-				console.log("show sun button");
 				window.showSunButton();
 			} else {
 				window.hideSunButton();
@@ -178,32 +179,34 @@ function attachMarker( obj, size ){
 		marker.$.bind('click', markerClick );
 		var intvl;
 		marker.$.hover(function () {
-			console.log('hover in');
 			var timer = 0;
 			intvl = setInterval(() => {
 				if(timer < 100) {
-					for(i=0 ; i<20; i++) {
-					$(this).children().children().removeClass("p"+timer);
+					for(i=0 ; i<10; i++) {
+					$(this).find(".c100").removeClass("p"+timer);
 					timer = timer + 1;
-					$(this).children().children().addClass("p"+timer);
+					$(this).find(".c100").addClass("p"+timer);
 				}
 			}
-		}, 5);
+		}, 1);
 
 		},
 		function () {
 			var timer = 100;	
 			clearInterval(intvl);		
-			$(this).children().children().attr("class","c100 p100");			
-			setInterval(() => {
+			$(this).find(".c100").attr("class","c100 p100");			
+			var intvl2 = setInterval(() => {
 				if(timer > 0) {
-					for(i=0 ; i<20; i++) {
-					$(this).children().children().removeClass("p"+timer);
-					timer = timer - 1;
-					$(this).children().children().addClass("p"+timer);
+					for(i=0 ; i<10; i++) {
+						$(this).find(".c100").removeClass("p"+timer);
+						timer = timer - 1;
+						$(this).find(".c100").addClass("p"+timer);
+					}
 				}
-			}
-			}, 5);
+				else {
+					clearInterval(intvl2);
+				}
+			}, 1);
 		});
 		marker.$.bind('touchstart', markerTouch );
 

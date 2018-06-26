@@ -424,7 +424,7 @@ function sceneSetup(){
 	if(enablePlanet){
 		
 
-				var uniforms = {  
+		var uniforms = {  
 		  texture: { type: 't', value: THREE.ImageUtils.loadTexture('images/planet02.jpg') }
 		};
 

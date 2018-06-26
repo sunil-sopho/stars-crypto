@@ -52,7 +52,7 @@ function createSpacePlane(){
 	translating.add( mesh );
 
 	var lines = new THREE.Geometry();
-	lines.vertices.push( new THREE.Vector3(0,0,-600) );
+	lines.vertices.push( new THREE.Vector3(0,0,-200) );
 	lines.vertices.push( new THREE.Vector3(0,0,600) );
 	lines.vertices.push( new THREE.Vector3(-600,0,0) );
 	lines.vertices.push( new THREE.Vector3(600,0,0) );

@@ -74,16 +74,24 @@ body {
     -ms-transition: text-shadow 0.25s;
     -o-transition: text-shadow 0.25s;
     transition: text-shadow 0.25s; }
-    .marker span.name:hover {
-      text-shadow: 0 0 3px #fff, 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff; }
   .marker.label {
     display: none;
+  }
+  .marker > .name {
+    display:none;
+    position: absolute;
+    left: 60px;
+    color: white;
+  }
+  .marker:hover > .name {
+    display:block;
+    position: absolute;
+    left: 60px;
+    color: white;
   }
   .marker.label span.name {
     cursor: default !important;
     font-size-adjust: none; }
-    .marker.label span.name:hover {
-      text-shadow: 0 0 3px #fff, 0 0 10px #000 !important; }
   .marker span.name {
     color: #fff;
     text-shadow: 0 0 3px #fff, 0 0 10px #000;
@@ -92,8 +100,6 @@ body {
     -ms-transition: text-shadow 0.25s;
     -o-transition: text-shadow 0.25s;
     transition: text-shadow 0.25s; }
-    .marker span.name:hover {
-      text-shadow: 0 0 3px #fff, 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff; }
 
 .legacymarker {
   font-family: 'Lekton', monospace;
