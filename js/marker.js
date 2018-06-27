@@ -179,6 +179,12 @@ function attachMarker( obj, size ){
 		var intvl;
 		marker.$.hover(function () {
 			var timer = 0;
+			var z = camera.position.z;
+			console.log(z);
+			$(this).find(".name").css("font-size",(z*z/10000) + 'px');
+			if(z < 900) {
+				$(this).find(".c100").css("font-size", (40 + 30*(z-380)/400)+'px');
+			}
 			intvl = setInterval(() => {
 				if(timer < 100) {
 					for(i=0 ; i<10; i++) {
