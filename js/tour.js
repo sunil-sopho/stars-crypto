@@ -11,7 +11,7 @@ var GALAXY_TOUR1 = [
   {"rx":0,"ry":0,"z":1.1,"travelTime":10000,"restTime":6000,"message":"Go forth and explore. Click, drag and zoom with your mouse."},  
 ];
 
-var GALAXY_TOUR = [
+var GALAXY_TOUR2 = [
   {"rx":-0.12216429754294249,"ry":1.9989722678912,"z":79999.99999999994,"travelTime":5000,"restTime":5000,"message":"It is time of war and Universe is in Chaos"},
   {"rx":0.5522785678088462,"ry":1.324151395815386,"z":2872.4214873346518,"travelTime":5000,"restTime":5000,"message":"Welcome to fabula your home"},
   {"rx":0.1019755752638865747,"ry":0.23341774437325485,"z":1210.7034532510997,"travelTime":4000,"restTime":5000,"message":"Stars are the primary source of stardust which is he fuel for everything here in fabula"},
@@ -23,9 +23,9 @@ var GALAXY_TOUR = [
   {"rx":0.203,"ry":0,"z":4.3,"travelTime":10000,"restTime":6000,"message":"Go forth and explore. Galaxy is your's for time being"},  
 ];
 
-var GALAXY_TOUR2 = [
-  {"rx":-0.12216429754294249,"ry":1.9989722678912,"z":79999.99999999994,"travelTime":5000,"restTime":500,"message":"It is time of war and Universe is in Chaos"},
-  {"rx":0.5522785678088462,"ry":1.324151395815386,"z":2.1214873346518,"travelTime":5000,"restTime":5000,"message":"The Purple Star"},
+var GALAXY_TOUR = [
+  {"rx":-0.12216429754294249,"ry":1.9989722678912,"z":79999.99999999994,"travelTime":500,"restTime":500,"message":"It is time of war and Universe is in Chaos"},
+  {"rx":0.5522785678088462,"ry":1.324151395815386,"z":60000.1214873346518,"x":100000,"travelTime":500,"restTime":500,"message":"The Purple Star"},
   // {"rx":0.1019755752638865747,"ry":0.23341774437325485,"z":1210.7034532510997,"travelTime":4000,"restTime":5000,"message":"Stars are the primary source of stardust which is he fuel for everything here in fabula"},
   // {"rx":0.503337952515914,"ry":-0.9904961225532652,"z":432.34847195438465,"travelTime":4000,"restTime":8000,"message":"These are the stars closest to our solar system.<br>The nearest star system, Alpha Centauri, is 4.3 light years away."},
   // {"rx":-0.18605511827781787,"ry":-2.464222597755626,"z":4.,"travelTime":5000,"restTime":4000,"message":"This is where it all begins, your planet where you will build a fleet so strong to fight evil emporer"},
@@ -81,6 +81,7 @@ Tour.prototype = {
       rx: camera.rotation.x,
       ry: camera.rotation.y,
       z: camera.position.z
+      // x: 
     };
 
     var state;
@@ -98,6 +99,7 @@ Tour.prototype = {
   },
 
   start: function() {
+    console.log("tour start")
     var _this = this, next;
     if( _this.current == 0 ){
       next = $('<a href="#" />')

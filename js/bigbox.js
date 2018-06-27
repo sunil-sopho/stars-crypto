@@ -62,12 +62,15 @@ function updateSkybox(override){
 		// rot.z *= -1;
 		cameraCube.rotation.copy( rot );
 	}
-	cameraCube.fov = constrain( camera.position.z * 20.0, 60, 70);
+	//console.log(camera.position.z);
+	cameraCube.fov = constrain( camera.position.z * 20.0, 70, 70);
 	cameraCube.updateProjectionMatrix();
 
-	var skyboxBrightness = constrain(50 / camera.position.z, 0.0, 1.0);
+	var skyboxBrightness = constrain(250 / camera.position.z, 0.0, 1.0);
+	if(camera.position.z > 750)
 	skyboxUniforms["opacity"].value = skyboxBrightness;
-	// skyboxUniforms["opacity"].value = 1.0;
+	else
+	skyboxUniforms["opacity"].value = .30;
 }
 
 function renderSkybox(){

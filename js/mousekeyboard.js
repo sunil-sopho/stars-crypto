@@ -68,12 +68,41 @@ function onClick( event ){
 function onKeyDown( event ){	
 }
 
+var boli = false;
 function handleMWheel( delta ) {
+	// if(tour.touring)
+	// 	return
 	// camera.scale.z += delta * 0.1;
 	camera.position.target.z += delta * camera.position.target.z * 0.01;
-	camera.position.target.z = constrain( camera.position.target.z, 0.8, 80000 );
+	camera.position.target.z = constrain( camera.position.target.z, 0.8, 85000 );
   	camera.position.target.pz = camera.position.target.z;
+	if(camera.position.z>79999){
+		camera.position.z = 80000;
+		console.log("more than 80000 " +camera.position.z)
+		// camera.position.target.z = constrain( camera.position.target.z, 0.8, 80000 );
+	  	// camera.position.target.pz = camera.position.target.z;
+		// camera.position.target.x = constrain( camera.position.target.z, 8000, 90000 );
+		
+		// camera.position.px = camera.position.target.x;
+
+		// console.log( "if  "+camera.position.z +" "+camera.position.x);
+		// camera.postion.target.y = 90000
+		// camera.postion.target.x = 90000
+		// updateMinimap();
+
+		if(!boli){
+			boli = true;
+			tour.start()
+		}
+		console.log(camera.easeZooming);
+	}
+
+else{
+	boli = false;
+  	camera.position.target.x = 0
+		console.log( "else  "+camera.position.z +" "+camera.position.x);
 	// console.log( camera.position.z );
+}
 	
 	camera.rotation.vx += (-0.0001 + Math.random() * 0.0002) * camera.position.z / 1000;
 	camera.rotation.vy += (-0.0001 + Math.random() * 0.0002) * camera.position.z / 1000;

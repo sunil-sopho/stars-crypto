@@ -20,11 +20,11 @@ var datastarTexture1 = THREE.ImageUtils.loadTexture( "images/p_2.png" );
 var datastarHeatVisionTexture = THREE.ImageUtils.loadTexture( "images/sharppoint.png" );
 
 //	bright flashy named stars graphic
-var starPreviewTexture = THREE.ImageUtils.loadTexture( 'images/system.png', undefined, setLoadMessage("Focusing optics")	);
+var starPreviewTexture = THREE.ImageUtils.loadTexture( 'images/system1.png', undefined, setLoadMessage("Focusing optics")	);
 var starColorGraph = THREE.ImageUtils.loadTexture( 'images/star_color_modified.png' );
 
 var datastarUniforms = {
-	color:     { type: "c", value: new THREE.Color( 0xffffff ) },
+	color:     { type: "c", value: new THREE.Color( 0xefeb09 ) },
 	texture0:   { type: "t", value: datastarTexture0 },
 	texture1:   { type: "t", value: datastarTexture1 },
 	heatVisionTexture: { type: "t", value: datastarHeatVisionTexture },

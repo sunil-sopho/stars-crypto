@@ -99,6 +99,7 @@ function generateGalaxy(){
 			dist = 0;
 			arm++;
 		}
+		
 	}		
 
 	var pGalacticSystem = new THREE.ParticleSystem( pGalaxy, galacticShaderMaterial );

@@ -8,7 +8,7 @@ function createSpacePlane(){
 		depthTest: false,
 		depthWrite: false,		
 		wireframe: true,
-		opacity: 0,
+		opacity: 1,
 	})
 	var cylinderGeo = new THREE.CylinderGeometry( 600, 0, 0, (360/8) - 1, 100 );
 	// var cylinderGeo = new THREE.IcosahedronGeometry( 600, 6 );
@@ -52,7 +52,7 @@ function createSpacePlane(){
 	translating.add( mesh );
 
 	var lines = new THREE.Geometry();
-	lines.vertices.push( new THREE.Vector3(0,0,-600) );
+	lines.vertices.push( new THREE.Vector3(0,0,-200) );
 	lines.vertices.push( new THREE.Vector3(0,0,600) );
 	lines.vertices.push( new THREE.Vector3(-600,0,0) );
 	lines.vertices.push( new THREE.Vector3(600,0,0) );

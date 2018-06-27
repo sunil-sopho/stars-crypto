@@ -242,7 +242,7 @@ function initScene() {
 	camera.position.z = 2000; //changes
 	camera.rotation.vx = 0;
 	camera.rotation.vy = 0;
-	camera.position.target = { x: 1, z: 900.1, pz: 2000 };
+	camera.position.target = { x: 0, z: 800, pz: 2000 };
 
 	if( enableSkybox ){
 		setupSkyboxScene();
@@ -274,11 +274,13 @@ function initScene() {
 		// camera.rotation.y *= constrain(camera.position.z / 100, 0, 1);		
 
 		camera.position.z += (camera.position.target.z - camera.position.z) * 0.125;
+		camera.position.x += (camera.position.target.x - camera.position.x) * 0.125*3;
 
 	};
 
 	camera.position.y = 0;
 	camera.scale.z = 0.83;
+	camera.scale.x = 0.83;
 
 	// camera.lookAt.x = 2.1
 	scene.add( camera );
@@ -424,7 +426,7 @@ function sceneSetup(){
 	if(enablePlanet){
 		
 
-				var uniforms = {  
+		var uniforms = {  
 		  texture: { type: 't', value: THREE.ImageUtils.loadTexture('images/planet02.jpg') }
 		};
 
@@ -522,8 +524,8 @@ function animate() {
 				starModel.rotation.y = rotateY;	
 			}
 			if(planet){
-				planet.rotation.x = rotateX;
-				planet.rotation.y = rotateY;				
+				// planet.rotation.x = rotateX;
+				// planet.rotation.y = rotateY;				
 			}			
 			// changes by sunil to correct planetory rotation		
 			rotating.rotation.x = rotateX //0;
@@ -537,8 +539,8 @@ function animate() {
 				starModel.rotation.y = rotateY;
 			}
 			if(planet){
-				planet.rotation.x = rotateX;
-				planet.rotation.y = rotateY;				
+				// planet.rotation.x = rotateX;
+				// planet.rotation.y = rotateY;				
 			}
 		}
 		
