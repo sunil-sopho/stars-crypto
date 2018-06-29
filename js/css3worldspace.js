@@ -75,12 +75,13 @@ function toCSSMatrix(threeMat4, b, offsetX, offsetY,camZ) {
             a.elements[0] , a.elements[1], a.elements[2], a.elements[3],
             a.elements[4], a.elements[5], a.elements[6], a.elements[7],
             a.elements[8], a.elements[9], a.elements[10], a.elements[11],
-            a.elements[12] - 0.42*(offsetX||0)*((camZ-780)/550)*((camZ-780)/550)-4.99*(camZ+0)/3000, a.elements[13] + (offsetY+8)*((camZ-320)/1950)*((camZ-320)/1950)+3.4 , a.elements[14], a.elements[15]
+            a.elements[12] - 0.42*(offsetX||0)*((camZ-780)/550)*((camZ-780)/550)+ 1/6.5, a.elements[13] + (offsetY+8)*((camZ-320)/1950)*((camZ-320)/1950)+2.5 , a.elements[14], a.elements[15]
         ];                  // Hack to make sure the text is centered
     }
     for (var e in f) {
         f[e] = epsilon(f[e]);
     }
+        
     return "matrix3d(" + f.join(",") + ")";
 }
 
@@ -96,7 +97,7 @@ function setDivPosition(cssObject, glObject, scale,camZ) {
     cssObject.style.WebkitTransform = transformation;
     //Mozilla:
     cssObject.style.MozTransformOrigin = "0% 0%";
-    cssObject.style.MozTransform = transformation;
+    cssObject.style.MozTransform = transformation;  
 }
 
 /************************************************************************/
