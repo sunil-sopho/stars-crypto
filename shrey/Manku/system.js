@@ -11,7 +11,7 @@ var System = function(options){
 			distance : 0,
 			theta : 0,
 			phi : 0,
-			center : {X : 0+a, Y : 0+b, Z : -1*115.473*d+c},
+			center : {X : 0+a, Y : 0+b, Z : -2*115.473*d+c},
 			color : 0,
 			rotationSpeed : {theta : 0.01, phi : 0}
 		});
@@ -23,7 +23,7 @@ var System = function(options){
 			theta : 0,
 			phi : 0,
 			color : 0,
-			center : {X : 0+a, Y : -100*d+b, Z : c+d*115.473/2},
+			center : {X : 0+a, Y : -200*d+b, Z : c+d*115.473},
 			rotationSpeed : {theta : 0.01, phi : 0}
 		});
 
@@ -34,12 +34,12 @@ var System = function(options){
 			theta : 0,
 			phi : 0,
 			color : 0,
-			center : {X : a+0, Y : b+d*100, Z : c+d*115.473/2},
+			center : {X : a+0, Y : b+d*200, Z : c+d*115.473},
 			rotationSpeed : {theta : 0.01, phi : 0}
 		});
 
 		var model4 = new Sun({
-			radius: 1*d,
+			radius: 2.5*d,
 			spectral: 0.1,
 			distance : 0,
 			theta : 0,
@@ -60,9 +60,16 @@ var System = function(options){
 
 		for(var i = 0; i<4; i++){
 			planet = new Planet({
-				distance : {X : 100*d, Y : 100*d, Z : 100*d},
+				distance : {X : 200*d, Y : 200*d, Z : 200*d},
 				theta : i * 2 * Math.PI / 6 + Math.PI,
 				phi : 0,
+				c1 : {X : 0+a, Y : 0+b, Z : -2*115.473*d+c},
+				c3 : {X: a+0, Y: -200*d+b, Z: c+d*115.473},
+				c2 : {X: a+0, Y: b+200*d, Z: c+d*115.473},
+				ax : a,
+				bx : b,
+				cx : c,
+				dx : d,
 				syst: options.number,
 				size : 10*d, 
 				name : "SHREY", 
@@ -70,16 +77,23 @@ var System = function(options){
 				image : "shindey.png", 
 				index : 1,
 				rotationSpeed : {theta : 0.01, phi : 0},
-				center : {X: a+0, Y: b+0, Z: (-115.473*d) +c}
+				center : {X: a+0, Y: b+0, Z: (-115.473*d*2) +c}
 			});
 			this.sys.add(planet.planet);
 			planets.push(planet.displayPlanet);
 		}
 		for(var i = 0; i<4; i++){
 			planet = new Planet({
-				distance : {X : 100*d, Y : 100*d, Z : 100*d},
+				distance : {X : 200*d, Y : 200*d, Z : 200*d},
 				theta : i * 2 * Math.PI / 6 + Math.PI/3,
 				phi : 0,
+				c1 : {X : 0+a, Y : 0+b, Z : -2*115.473*d+c},
+				c3 : {X: a+0, Y: -200*d+b, Z: c+d*115.473},
+				c2 : {X: a+0, Y: b+200*d, Z: c+d*115.473},
+				ax : a,
+				bx : b,
+				cx : c,
+				dx : d,
 				syst: options.number,
 				size : 10*d, 
 				name : "SHREY", 
@@ -87,16 +101,23 @@ var System = function(options){
 				image : "shindey2.png", 
 				index : 3,
 				rotationSpeed : {theta : 0.01, phi : 0},
-				center : {X: a+0, Y: -100*d+b, Z: c+d*115.473/2}
+				center : {X: a+0, Y: -200*d+b, Z: c+d*115.473}
 			});
 			this.sys.add(planet.planet);
 			planets.push(planet.displayPlanet);
 		}
 			for(var i = 0; i<4; i++){
 			planet = new Planet({
-				distance : {X : 100*d, Y : 100*d, Z : 100*d},
+				distance : {X : 200*d, Y : 200*d, Z : 200*d},
 				theta : i * 2 * Math.PI /6 + 5*Math.PI/3,
 				phi : 0,
+				c1 : {X : 0+a, Y : 0+b, Z : -2*115.473*d+c},
+				c3 : {X: a+0, Y: -200*d+b, Z: c+d*115.473},
+				c2 : {X: a+0, Y: b+200*d, Z: c+d*115.473},
+				ax : a,
+				bx : b,
+				cx : c,
+				dx : d,
 				syst: options.number,
 				size : 10*d, 
 				name : "SHREY", 
@@ -104,7 +125,7 @@ var System = function(options){
 				image : "sun_surface.png", 
 				index : 2,
 				rotationSpeed : {theta : 0.01, phi : 0},
-				center : {X: a+0, Y: b+100*d, Z: c+d*115.473/2}
+				center : {X: a+0, Y: b+200*d, Z: c+d*115.473}
 			});
 			this.sys.add(planet.planet);
 			planets.push(planet.displayPlanet);

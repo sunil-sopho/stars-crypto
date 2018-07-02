@@ -103,7 +103,10 @@ var Planet = function(options){
 	this.planet.add(wireframe);
 	var t = options.syst;
 	// this.sphere.add(this.displayPlanet);
-
+	var bx = options.bx;
+	var cx = options.cx;
+	var dx = options.dx;
+	var ax = options.ax;
 	this.planet.update = function(){
 
 		this.sphere.rotation.z += 0.002;
@@ -190,28 +193,28 @@ var Planet = function(options){
 			}
 		}
 		else{
-			if(distance(this.position.x,this.position.y,this.position.z,this.position.x,50,-28.868) < 1 && this.index == 1){
+			if(distance(this.position.x,this.position.y,this.position.z,ax,100*dx+bx,-28.868*2*dx + cx) < 5 && this.index == 1){
 				this.index = 2;
 				this.theta =  this.theta - Math.PI;
-				this.center.X = 0;
-				this.center.Y = 100;
-				this.center.Z = 115.473/2;
+				this.center.X = options.c2.X;
+				this.center.Y = options.c2.Y;
+				this.center.Z = options.c2.Z;
 				//this.rotationSpeed.theta *= -1;	
 			}
-			else if(distance(this.position.x,this.position.y,this.position.z,this.position.x,0,28.868*2) < 1 && this.index == 2){
+			else if(distance(this.position.x,this.position.y,this.position.z,ax,bx,cx+dx*28.868*4) < 5 && this.index == 2){
 				this.index = 3;
 				this.theta =  this.theta - Math.PI;
-				this.center.X = 0;
-				this.center.Y = -100;
-				this.center.Z = 115.473/2;
+				this.center.X = options.c3.X;
+				this.center.Y = options.c3.Y;
+				this.center.Z = options.c3.Z;
 				//this.rotationSpeed.theta *= -1;	
 			}
-			else if(distance(this.position.x,this.position.y,this.position.z,this.position.x,-50,-28.868) < 1 && this.index == 3){
+			else if(distance(this.position.x,this.position.y,this.position.z,ax,-100*dx+bx,-28.868*2*dx+cx) < 5 && this.index == 3){
 				this.index = 1;
 				this.theta =  this.theta - Math.PI;
-				this.center.X = 0;
-				this.center.Y = 0;
-				this.center.Z = -115.473;
+				this.center.X = options.c1.X;
+				this.center.Y = options.c1.Y;
+				this.center.Z = options.c1.Z;
 				//this.rotationSpeed.theta *= -1;	
 			}
 			else{
