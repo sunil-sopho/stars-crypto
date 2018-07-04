@@ -64,7 +64,7 @@ function setStarModel( position, name ){
 		starModel.setSpectralIndex( mainStar.c );
 
 	starModel.setScale( mainStar.radius );
-	starModel.randomizeSolarFlare();
+	// starModel.randomizeSolarFlare();
 
 	var rx = -0.5 + Math.random() * 2;
 	var ry = -0.5 + Math.random() * 2;

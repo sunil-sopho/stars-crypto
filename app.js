@@ -40,7 +40,7 @@ app.use(logger('dev'));
 app.use(compression());
 app.use(express.static(path.resolve(__dirname, './')));
 //app.use('/courses', express.static(path.resolve(__dirname, 'client')));
-app.set('port', process.env.PORT || 4000);
+app.set('port', process.env.PORT || 4001);
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.set('views', __dirname + './');

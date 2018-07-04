@@ -40,8 +40,9 @@ function createSpaceRadius( radius, color, representationScale ){
 	// 		depthWrite: false,
 	// 	} 
 	// );
-	var geometry = new THREE.TorusGeometry( radius, 0.000000055, 40, 100 );
-	var material = new THREE.MeshBasicMaterial( { color: 0x3e68ad ,transparent:true} );
+	var geometry = new THREE.TorusGeometry( radius, 0.0000000155, 40, 100 );
+	// var geometry = new THREE.TorusGeometry( 10, 0.1, 16, 100 );
+	var material = new THREE.MeshBasicMaterial( { color: 0x3e68ad ,transparent:true,antialias: true} );
 	// var mesh = new THREE.ParticleSystem( geometry1, particleMaterial );
 	var mesh = new THREE.Mesh( geometry, material );
 
@@ -49,11 +50,12 @@ function createSpaceRadius( radius, color, representationScale ){
 	mesh.update = function(){
 		if( camera.position.z < 2.0 )
 			this.visible = false
-		else
-		if( camera.position.z < 800)
+		else if( camera.position.z < 800)
 			this.visible = true;
 		else
 			this.visible = false;
+		mesh.geometry.tube = 0.000000055*camera.position.z/62;
+		// console.log(mesh.geometry.tube)
 	}
 	
 	mesh.rotation.x = Math.PI/2;

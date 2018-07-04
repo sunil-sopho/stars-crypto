@@ -153,7 +153,16 @@ function attachMarker( obj, size ){
 
 			if( isStarSystem ){
 				//	this also sets the scale, and thus the star radius
-				setStarModel( vec, marker.id );
+				// Call shrey System Api here with position
+					var System1 = new System({
+						number: 2,
+						x: vec.x,
+						y: vec.y,
+						z: vec.z,
+						scale: 0.00000001
+					});
+				rotating.add(System1.sys);
+				// setStarModel( vec, marker.id );
 				var modelScale = starModel.scale.length();
 
 				// we use the radius to determine how much we're going to zoom and offset

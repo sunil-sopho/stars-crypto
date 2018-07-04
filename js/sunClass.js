@@ -102,15 +102,14 @@ var Sun = function(options){
 				vertexShader:   shaderList.starhalo.vertex,
 				fragmentShader: shaderList.starhalo.fragment,
 				blending: 		THREE.AdditiveBlending,
-				depthTest: 		true,
-				depthWrite: 	true,
+				depthTest: 		false,
+				depthWrite: 	false,
 				color: 			0xffffff,
 				transparent: 	true,
-				opacity: 		0.2
 				//	settings that prevent z fighting
-				// polygonOffset: 			true,
-				// polygonOffsetFactor: 	1,
-				// polygonOffsetUnits: 	100
+				polygonOffset: 			true,
+				polygonOffsetFactor: 	1,
+				polygonOffsetUnits: 	100
 			}
 		);
 
@@ -134,9 +133,9 @@ var Sun = function(options){
 				depthTest: 		true,
 				depthWrite: 	true,
 				//	settings that prevent z fighting
-				// polygonOffset: 			true,
-				// polygonOffsetFactor: 	-1,
-				// polygonOffsetUnits: 	100
+				polygonOffset: 			true,
+				polygonOffsetFactor: 	-1,
+				polygonOffsetUnits: 	100
 				// depthFunc : THREE.AlwaysDepth
 				// lights : true
 			}
@@ -208,9 +207,9 @@ var Sun = function(options){
 				transparent: 			true,
 				depthTest: 				true,
 				depthWrite: 			false,
-				// polygonOffset: 			true,
-				// polygonOffsetFactor: 	-100,
-				// polygonOffsetUnits: 	1000,
+				polygonOffset: 			true,
+				polygonOffsetFactor: 	-100,
+				polygonOffsetUnits: 	1000,
 			}
 		);
 
@@ -360,9 +359,14 @@ var Sun = function(options){
 		this.theta += this.rotationSpeed.theta;
 		this.phi += this.rotationSpeed.phi;
 
-		this.position.x = this.center.X + this.distance * Math.sin(this.theta) * Math.cos(this.phi);
-		this.position.y = this.center.Y + this.distance * Math.sin(this.theta) * Math.sin(this.phi);
-		this.position.z = this.center.Z + this.distance * Math.cos(this.theta);
+		
+		this.position.x = this.center.X + this.distance * Math.sin(this.theta) * Math.sin(this.phi);
+		this.position.y = this.center.Y + this.distance * Math.cos(this.theta);
+		this.position.z = this.center.Z + this.distance * Math.sin(this.theta) * Math.cos(this.phi);
+
+		// this.position.x = this.center.X + this.distance * Math.sin(this.theta)* Math.sin(this.phi) ; 
+		// this.position.y = this.center.Y + this.distance * Math.cos(this.theta); 
+		// this.position.z = this.center.Z + this.distance * Math.sin(this.theta)* Math.cos(this.phi);
 
 		// console.log(this.position.x, this.position.y, this.position.z);
 

@@ -34,7 +34,7 @@ function initSkybox( highres ){
 		depthTest: false,
 	} );
 
-	skybox = new THREE.Mesh( new THREE.CubeGeometry( 100, 100, 100 ), skyboxMat );
+	skybox = new THREE.Mesh( new THREE.CubeGeometry( 1000000, 1000000, 1000000 ), skyboxMat );
 	sceneCube.add( skybox );
 }
 

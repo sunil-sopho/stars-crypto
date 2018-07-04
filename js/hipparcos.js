@@ -20,7 +20,10 @@ var datastarTexture1 = THREE.ImageUtils.loadTexture( "images/p_2.png" );
 var datastarHeatVisionTexture = THREE.ImageUtils.loadTexture( "images/sharppoint.png" );
 
 //	bright flashy named stars graphic
-var starPreviewTexture = THREE.ImageUtils.loadTexture( 'images/system1.png', undefined, setLoadMessage("Focusing optics")	);
+var starPreviewTexture = THREE.ImageUtils.loadTexture( 'images/SectorMod.png', undefined, setLoadMessage("Focusing optics")	);
+var starPreviewTexture1 = THREE.ImageUtils.loadTexture( 'images/SectorMod.png', undefined, setLoadMessage("Focusing optics")	);
+var starPreviewTexture2 = THREE.ImageUtils.loadTexture( 'images/SectorModViolet.png', undefined, setLoadMessage("Focusing optics")	);
+var starPreviewTexture3 = THREE.ImageUtils.loadTexture( 'images/SectorModViolet.png', undefined, setLoadMessage("Focusing optics")	);
 var starColorGraph = THREE.ImageUtils.loadTexture( 'images/star_color_modified.png' );
 
 var datastarUniforms = {
@@ -63,7 +66,31 @@ function generateHipparcosStars(){
 		depthWrite: false,
 	});
 
-	var starPreview = new THREE.Mesh( new THREE.PlaneGeometry( 6, 6 ), starPreviewMaterial );
+	var starPreviewMaterial1 = new THREE.MeshBasicMaterial({
+		map: starPreviewTexture1,
+		blending: THREE.AdditiveBlending,
+		transparent: true,
+		depthTest: false,
+		depthWrite: false,
+	});
+	var starPreviewMaterial2 = new THREE.MeshBasicMaterial({
+		map: starPreviewTexture2,
+		blending: THREE.AdditiveBlending,
+		transparent: true,
+		depthTest: false,
+		depthWrite: false,
+	});
+	var starPreviewMaterial3 = new THREE.MeshBasicMaterial({
+		map: starPreviewTexture3,
+		blending: THREE.AdditiveBlending,
+		transparent: true,
+		depthTest: false,
+		depthWrite: false,
+	});
+	var starPreview = new THREE.Mesh( new THREE.PlaneGeometry( 10, 10 ), starPreviewMaterial );
+	var starPreview1 = new THREE.Mesh( new THREE.PlaneGeometry( 10, 10 ), starPreviewMaterial1 );
+	var starPreview2 = new THREE.Mesh( new THREE.PlaneGeometry( 10, 10 ), starPreviewMaterial2 );
+	var starPreview3 = new THREE.Mesh( new THREE.PlaneGeometry( 10, 10 ), starPreviewMaterial3 );
 
 	var pLineGeo = new THREE.Geometry();
 	console.log(starData[0])
@@ -186,7 +213,16 @@ function generateHipparcosStars(){
 			pLineGeo.vertices.push( base );
 
 			//	create a star sprite highlighting it
-			var preview = starPreview.clone();
+			var preview;// = starPreview.clone();
+			if(i%4==0)
+				preview = starPreview.clone();
+			else if(i%4==1)
+				preview = starPreview1.clone();
+			else if(i%4==2)
+				preview = starPreview2.clone();
+			else if(i%4==3)
+				preview = starPreview3.clone();
+
 			var gyroStar = new THREE.Gyroscope();
 			gyroStar.position.copy( p );
 			gyroStar.add( preview );

@@ -199,8 +199,8 @@ function initScene() {
 	screenHeight = window.innerHeight
 	screenWhalf = window.innerWidth / 2;
 	screenHhalf = window.innerHeight / 2;
-
-	renderer = new THREE.WebGLRenderer({antialias:antialias});
+	// {antialias:true}
+	renderer = new THREE.WebGLRenderer();
 
 	// The devicePixelRatio caused odd alignment and behavior in retina displays
 	// that were not "tablets", so I took it out.
