@@ -91,9 +91,9 @@ function makeKuiperBelt(){
 
 function makeSolarSystem(){
 	var solarSystem = new THREE.Object3D();
-	// makeSys1(solarSystem)
-	// makeSys2(solarSystem)
-	makeSys3(solarSystem)
+	makeSys1(solarSystem)
+	makeSys2(solarSystem)
+	// makeSys3(solarSystem)
 
 	// var oortCloud = makeOortCloud();
 	// solarSystem.add( oortCloud );

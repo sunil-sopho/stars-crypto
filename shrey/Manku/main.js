@@ -397,35 +397,35 @@ function sceneSetup(){
 	var System1 = new System({
 		number: 2,
 		x: 0,
-		y: 1000,
-		z: 1000,
-		scale: 3
+		y: -4000,
+		z: -4000,
+		scale: 5
 	});
-	translating.add(System1.sys);
+	// translating.add(System1.sys);
 	var System2 = new System({
-		number: 3,
+		number: 1,
 		x: 0,
-		y: -1000,
-		z: -1000,
-		scale: 3
+		y: 0,
+		z: 0,
+		scale: 1
 	});
 	translating.add(System2.sys);
 	var System3 = new System({
 		number: 4,
 		x: 0,
-		y: -1000,
-		z: 1000,
-		scale: 3
+		y: 0,
+		z: 0,
+		scale: 5
 	});
-	translating.add(System3.sys);
+	// translating.add(System3.sys);
 	var System4 = new System({
 		number: 5,
 		x: 0,
-		y: 1000,
-		z: -1000,
-		scale: 3
+		y: 0,
+		z: 0,
+		scale: 5
 	});
-	translating.add(System4.sys);
+	// translating.add(System4.sys);
 
 
 	/*for(var i = 0; i<4; i++){

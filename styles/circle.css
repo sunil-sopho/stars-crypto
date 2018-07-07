@@ -224,7 +224,8 @@
 }
 .c100 {
   position: absolute;
-  top: -1.6px;
+  top: -0.35em;
+  left: -0.35em;
   font-size: 70px;
   width: 1em;
   height: 1em;

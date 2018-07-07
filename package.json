@@ -1,15 +1,17 @@
 {
-  "name": "nokia-transmission",
-  "version": "1.0.0",
-  "description": "nokia transmission project",
+  "name": "Crypto-3D-Env",
+  "version": "1.0.1",
+  "description": "3D env For CryptoSpaceX",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
   },
   "keywords": [
-    "nokia",
-    "transmission",
-    "kpi"
+    "three.js",
+    "galaxy",
+    "space",
+    "CryptoSpaceX"
   ],
   "author": "Sunil Kumar",
   "license": "ISC",
@@ -35,6 +37,7 @@
     "path": "^0.12.7",
     "q": "^1.5.0",
     "sequelize": "^4.28.5",
-    "underscore": "1.6.0"
+    "underscore": "1.6.0",
+    "request": "latest"
   }
 }

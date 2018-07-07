@@ -159,9 +159,10 @@ function attachMarker( obj, size ){
 						x: vec.x,
 						y: vec.y,
 						z: vec.z,
-						scale: 0.00000001
+						scale: 0.001
 					});
 				rotating.add(System1.sys);
+				console.log(vec)
 				// setStarModel( vec, marker.id );
 				var modelScale = starModel.scale.length();
 
